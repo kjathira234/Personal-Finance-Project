@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Registration - Personal Finance</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        .container {
+            width: 450px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        }
+
+        h2 {
+            text-align: center;
+            color: #243447;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 11px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #243447;
+        }
+
+        button {
+            width: 100%;
+            padding: 13px;
+            margin-top: 10px;
+            background: #243447;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1b2836;
+        }
+
+        .message {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-link a {
+            color: #243447;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+    <h2>Create Account</h2>
+
+    <p class="subtitle">
+        Personal Finance Management System
+    </p>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+
+        <!-- 1. NAME -->
+
+        <div class="form-group">
+
+            <label for="name">
+                Full Name
+            </label>
+
+            <input
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Enter your full name"
+                required
+            >
+
+        </div>
+
+
+        <!-- 2. AGE -->
+
+        <div class="form-group">
+
+            <label for="age">
+                Age
+            </label>
+
+            <input
+                type="number"
+                id="age"
+                name="age"
+                placeholder="Enter your age"
+                min="18"
+                max="100"
+                required
+            >
+
+        </div>
+
+
+        <!-- 3. GENDER -->
+
+        <div class="form-group">
+
+            <label for="gender">
+                Gender
+            </label>
+
+            <select
+                id="gender"
+                name="gender"
+                required
+            >
+
+                <option value="">
+                    Select Gender
+                </option>
+
+                <option value="Male">
+                    Male
+                </option>
+
+                <option value="Female">
+                    Female
+                </option>
+
+                <option value="Other">
+                    Other
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- 4. EDUCATION -->
+
+        <div class="form-group">
+
+            <label for="education_level">
+                Education
+            </label>
+
+            <select
+                id="education_level"
+                name="education_level"
+                required
+            >
+
+                <option value="">
+                    Select Education
+                </option>
+
+                <option value="High School">
+                    High School
+                </option>
+
+                <option value="Bachelor's">
+                    Bachelor's
+                </option>
+
+                <option value="Master's">
+                    Master's
+                </option>
+
+                <option value="PhD">
+                    PhD
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- 5. EMPLOYMENT -->
+
+        <div class="form-group">
+
+            <label for="employment_status">
+                Employment
+            </label>
+
+            <select
+                id="employment_status"
+                name="employment_status"
+                required
+            >
+
+                <option value="">
+                    Select Employment Status
+                </option>
+
+                <option value="Employed">
+                    Employed
+                </option>
+
+                <option value="Self-employed">
+                    Self-employed
+                </option>
+
+                <option value="Unemployed">
+                    Unemployed
+                </option>
+
+                <option value="Student">
+                    Student
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- 6. USERNAME -->
+
+        <div class="form-group">
+
+            <label for="username">
+                Username
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter username"
+                minlength="6"
+                required
+            >
+
+        </div>
+
+
+        <!-- 7. EMAIL -->
+
+        <div class="form-group">
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Enter email address"
+                required
+            >
+
+        </div>
+
+
+        <!-- 8. PHONE -->
+
+        <div class="form-group">
+
+            <label for="phone">
+                Phone
+            </label>
+
+            <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter 10-digit phone number"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                required
+            >
+
+        </div>
+
+
+        <!-- 9. PASSWORD -->
+
+        <div class="form-group">
+
+            <label for="password">
+                Password
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter password"
+                minlength="8"
+                required
+            >
+
+        </div>
+
+
+        <!-- SUBMIT -->
+
+        <button type="submit">
+            Register
+        </button>
+
+
+    </form>
+
+
+    <!-- ERROR MESSAGE -->
+
+    {% if error %}
+
+        <div class="message error">
+            {{ error }}
+        </div>
+
+    {% endif %}
+
+
+    <!-- SUCCESS MESSAGE -->
+
+    {% if success %}
+
+        <div class="message success">
+            {{ success }}
+        </div>
+
+    {% endif %}
+
+
+    <!-- LOGIN LINK -->
+
+    <div class="login-link">
+
+        Already have an account?
+
+        <a href="{% url 'login' %}">
+            Login
+        </a>
+
+    </div>
+
+
+</div>
+
+
+</body>
+
+</html>

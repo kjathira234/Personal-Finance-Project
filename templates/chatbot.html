@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Financial Chatbot</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f7fb;
+        }
+
+        .chat-container {
+            width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .message {
+            padding: 15px;
+            margin: 10px 0;
+            background: #f1f5f9;
+            border-radius: 5px;
+        }
+
+        input {
+            width: 75%;
+            padding: 12px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background: #243447;
+            color: white;
+            border: none;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 20px;
+            background: #243447;
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="chat-container">
+
+    <h1>AI Financial Assistant</h1>
+
+    <div class="message">
+        <strong>AI Assistant:</strong>
+        Hello! How can I help you with your finances?
+    </div>
+
+    {% if response %}
+
+        <div class="message">
+            <strong>AI Assistant:</strong>
+            {{ response }}
+        </div>
+
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input
+            type="text"
+            name="message"
+            placeholder="Ask a financial question..."
+            required
+        >
+
+        <button type="submit">
+            Send
+        </button>
+
+    </form>
+
+    <a href="{% url 'dashboard' %}">
+        View Dashboard
+    </a>
+
+</div>
+
+</body>
+</html>

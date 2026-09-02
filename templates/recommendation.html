@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Budget Recommendation</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 700px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #243447;
+        }
+
+        .status {
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: #e8f0fe;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .card {
+            padding: 20px;
+            margin: 15px 0;
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+
+        .card h3 {
+            color: #243447;
+            margin-top: 0;
+        }
+
+        .card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-top: 25px;
+        }
+
+        a {
+            display: inline-block;
+            padding: 12px 20px;
+            background: #243447;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background: #1a2733;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Personalized Budget Recommendation</h1>
+
+    <!-- Financial Status -->
+    <div class="status">
+        Financial Health Status: 
+        <strong>{{ financial_status|default:"Pending" }}</strong>
+    </div>
+
+    <!-- Income Management -->
+    <div class="card">
+        <h3>Income Management</h3>
+        {% if financial_status|lower == "good" %}
+            <p>
+                Your financial condition is good. 
+                Continue managing your income effectively and 
+                maintain your current financial discipline.
+            </p>
+        {% elif financial_status|lower == "average" %}
+            <p>
+                Maintain a proper monthly income plan. 
+                Try to allocate a fixed percentage of your income 
+                towards savings.
+            </p>
+        {% else %}
+            <p>
+                Focus on improving your income stability. 
+                If possible, look for additional sources of income 
+                and avoid unnecessary financial commitments.
+            </p>
+        {% endif %}
+    </div>
+
+    <!-- Expense Management -->
+    <div class="card">
+        <h3>Expense Management</h3>
+        {% if financial_status|lower == "good" %}
+            <p>
+                Continue monitoring your expenses and avoid 
+                unnecessary increases in monthly spending.
+            </p>
+        {% elif financial_status|lower == "average" %}
+            <p>
+                Reduce unnecessary expenses and carefully monitor 
+                your monthly spending to improve your financial health.
+            </p>
+        {% else %}
+            <p>
+                Reduce non-essential expenses immediately. 
+                Prepare a monthly budget and prioritize essential 
+                needs over unnecessary spending.
+            </p>
+        {% endif %}
+    </div>
+
+    <!-- Savings Recommendation -->
+    <div class="card">
+        <h3>Savings Recommendation</h3>
+        {% if financial_status|lower == "good" %}
+            <p>
+                Continue saving regularly and consider increasing 
+                your savings amount. Maintain an emergency fund 
+                covering several months of expenses.
+            </p>
+        {% elif financial_status|lower == "average" %}
+            <p>
+                Try to increase your monthly savings gradually. 
+                Building an emergency fund can improve your 
+                financial stability.
+            </p>
+        {% else %}
+            <p>
+                Start saving even a small amount regularly. 
+                Focus on building an emergency fund after 
+                controlling your unnecessary expenses.
+            </p>
+        {% endif %}
+    </div>
+
+    <!-- Debt Management -->
+    <div class="card">
+        <h3>Debt Management</h3>
+        {% if financial_status|lower == "good" %}
+            <p>
+                Continue making your EMI payments on time. 
+                Avoid taking unnecessary loans and maintain 
+                a healthy debt-to-income ratio.
+            </p>
+        {% elif financial_status|lower == "average" %}
+            <p>
+                Keep your loan payments under control and avoid 
+                taking unnecessary new loans. Make all EMI payments 
+                on time.
+            </p>
+        {% else %}
+            <p>
+                Prioritize repayment of existing debts. 
+                Avoid unnecessary loans and ensure that EMI 
+                payments are made on time.
+            </p>
+        {% endif %}
+    </div>
+
+    <!-- Risk Management Button -->
+    <div class="button-container">
+        <a href="{% url 'riskmanagement' %}">
+            Check Financial Risk
+        </a>
+    </div>
+
+</div>
+
+</body>
+</html>
