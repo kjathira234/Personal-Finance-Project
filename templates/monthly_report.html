@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Monthly Financial Report | FinWise</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+
+        background:
+            radial-gradient(circle at top left,
+                rgba(59,130,246,0.12),
+                transparent 35%),
+            radial-gradient(circle at bottom right,
+                rgba(14,165,233,0.10),
+                transparent 35%),
+            #f4f7fb;
+
+        color: #1e293b;
+        min-height: 100vh;
+    }
+
+    /* ================= HEADER ================= */
+
+    .top-header {
+        background: linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a,
+            #0369a1
+        );
+
+        color: white;
+        padding: 18px 6%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        box-shadow:
+            0 5px 25px rgba(15,23,42,0.18);
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .brand-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 12px;
+
+        background: rgba(255,255,255,0.14);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 21px;
+
+        border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .brand h2 {
+        color: white;
+        font-size: 22px;
+        letter-spacing: 0.5px;
+    }
+
+    .brand span {
+        display: block;
+
+        font-size: 10px;
+
+        color: #cbd5e1;
+
+        margin-top: 2px;
+
+        letter-spacing: 1px;
+    }
+
+    .header-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        color: #dbeafe;
+        font-size: 13px;
+    }
+
+    .status-dot {
+        width: 8px;
+        height: 8px;
+
+        border-radius: 50%;
+
+        background: #22c55e;
+
+        box-shadow:
+            0 0 10px rgba(34,197,94,0.7);
+    }
+
+    /* ================= MAIN ================= */
+
+    .container {
+        width: 90%;
+        max-width: 1100px;
+
+        margin: 38px auto 50px;
+    }
+
+    .page-heading {
+        margin-bottom: 28px;
+    }
+
+    .tag {
+        display: inline-block;
+
+        background: #dbeafe;
+        color: #1d4ed8;
+
+        padding: 6px 12px;
+
+        border-radius: 20px;
+
+        font-size: 11px;
+        font-weight: 700;
+
+        letter-spacing: 0.7px;
+
+        margin-bottom: 10px;
+    }
+
+    .page-heading h1 {
+        font-size: 32px;
+        color: #0f172a;
+
+        margin-bottom: 8px;
+    }
+
+    .page-heading p {
+        color: #64748b;
+        font-size: 15px;
+    }
+
+    /* ================= CARDS ================= */
+
+    .card {
+        background: rgba(255,255,255,0.96);
+
+        padding: 28px;
+
+        border-radius: 18px;
+
+        border: 1px solid #e2e8f0;
+
+        box-shadow:
+            0 10px 30px rgba(15,23,42,0.07),
+            0 2px 6px rgba(15,23,42,0.04);
+
+        margin-bottom: 25px;
+    }
+
+    .card-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        margin-bottom: 22px;
+    }
+
+    .card-icon {
+        width: 44px;
+        height: 44px;
+
+        border-radius: 12px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #dbeafe,
+                #e0f2fe
+            );
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 20px;
+    }
+
+    .card-title h2 {
+        color: #0f172a;
+        font-size: 20px;
+    }
+
+    .card-subtitle {
+        color: #64748b;
+        font-size: 12px;
+        margin-top: 3px;
+    }
+
+    /* ================= SUMMARY ================= */
+
+    .summary {
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 17px;
+    }
+
+    .summary-box {
+        position: relative;
+
+        padding: 23px;
+
+        border-radius: 14px;
+
+        background: #f8fafc;
+
+        border: 1px solid #e2e8f0;
+
+        overflow: hidden;
+
+        transition: 0.25s ease;
+    }
+
+    .summary-box:hover {
+        transform: translateY(-3px);
+
+        box-shadow:
+            0 10px 22px rgba(15,23,42,0.07);
+    }
+
+    .summary-box::after {
+        content: "";
+
+        position: absolute;
+
+        width: 70px;
+        height: 70px;
+
+        right: -25px;
+        bottom: -25px;
+
+        border-radius: 50%;
+
+        background: rgba(59,130,246,0.08);
+    }
+
+    .summary-label {
+        color: #64748b;
+
+        font-size: 12px;
+
+        font-weight: 600;
+
+        text-transform: uppercase;
+
+        letter-spacing: 0.5px;
+    }
+
+    .summary-value {
+        display: block;
+
+        font-size: 24px;
+
+        font-weight: 700;
+
+        margin-top: 10px;
+    }
+
+    .income-value {
+        color: #059669;
+    }
+
+    .expense-value {
+        color: #dc2626;
+    }
+
+    .saving-value {
+        color: #2563eb;
+    }
+
+    /* ================= RATIOS ================= */
+
+    .statistics {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 18px;
+    }
+
+    .stat-box {
+        background: #f8fafc;
+
+        border: 1px solid #e2e8f0;
+
+        padding: 20px;
+
+        border-radius: 13px;
+    }
+
+    .stat-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        margin-bottom: 12px;
+    }
+
+    .stat-header span {
+        color: #64748b;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .stat-header strong {
+        font-size: 18px;
+        color: #1e3a8a;
+    }
+
+    .progress {
+        width: 100%;
+        height: 8px;
+
+        background: #e2e8f0;
+
+        border-radius: 10px;
+
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+
+        width: 60%;
+
+        background:
+            linear-gradient(
+                90deg,
+                #2563eb,
+                #0284c7
+            );
+
+        border-radius: 10px;
+    }
+
+    /* ================= TABLE ================= */
+
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+
+        border: 1px solid #e2e8f0;
+
+        border-radius: 12px;
+    }
+
+    table {
+        width: 100%;
+
+        border-collapse: collapse;
+
+        min-width: 600px;
+    }
+
+    th,
+    td {
+        padding: 15px 17px;
+
+        text-align: left;
+
+        border-bottom: 1px solid #e2e8f0;
+    }
+
+    th {
+        background: #f8fafc;
+
+        color: #475569;
+
+        font-size: 12px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 0.5px;
+    }
+
+    td {
+        color: #334155;
+
+        font-size: 14px;
+    }
+
+    tbody tr {
+        transition: 0.2s ease;
+    }
+
+    tbody tr:hover {
+        background: #f8fbff;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    .category {
+        font-weight: 600;
+        color: #1e3a8a;
+    }
+
+    .amount {
+        font-weight: 700;
+        color: #dc2626;
+    }
+
+    .empty-row {
+        text-align: center;
+        color: #64748b;
+        padding: 22px;
+    }
+
+    /* ================= HIGHLIGHT ================= */
+
+    .highlight {
+        position: relative;
+
+        padding: 22px;
+
+        border-radius: 14px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #fff7ed,
+                #fffbeb
+            );
+
+        border: 1px solid #fed7aa;
+    }
+
+    .highlight-label {
+        color: #92400e;
+
+        font-size: 12px;
+
+        text-transform: uppercase;
+
+        letter-spacing: 0.6px;
+
+        font-weight: 700;
+
+        margin-bottom: 8px;
+    }
+
+    .highlight-category {
+        font-size: 21px;
+
+        font-weight: 700;
+
+        color: #9a3412;
+
+        margin-bottom: 12px;
+    }
+
+    .highlight-amount {
+        color: #7c2d12;
+
+        font-size: 14px;
+    }
+
+    .highlight-amount strong {
+        font-size: 20px;
+    }
+
+    /* ================= BALANCE ================= */
+
+    .balance-box {
+        padding: 22px;
+
+        border-radius: 14px;
+
+        background: #f8fafc;
+
+        border: 1px solid #e2e8f0;
+
+        color: #475569;
+
+        line-height: 1.7;
+
+        font-size: 14px;
+    }
+
+    .balance-box strong {
+        color: #0f172a;
+        font-size: 18px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        background: #0f172a;
+
+        color: #94a3b8;
+
+        text-align: center;
+
+        padding: 22px 15px;
+
+        font-size: 12px;
+    }
+
+    footer strong {
+        color: #e2e8f0;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 750px) {
+
+        .header-status {
+            display: none;
+        }
+
+        .container {
+            width: 92%;
+            margin-top: 28px;
+        }
+
+        .page-heading h1 {
+            font-size: 27px;
+        }
+
+        .summary {
+            grid-template-columns: 1fr;
+        }
+
+        .statistics {
+            grid-template-columns: 1fr;
+        }
+
+        .card {
+            padding: 21px;
+        }
+
+    }
+
+    @media (max-width: 450px) {
+
+        .brand h2 {
+            font-size: 19px;
+        }
+
+        .brand span {
+            font-size: 8px;
+        }
+
+        .page-heading h1 {
+            font-size: 24px;
+        }
+
+        .summary-value {
+            font-size: 21px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="top-header">
+
+
+<div class="brand">
+
+    <div class="brand-icon">
+        📊
+    </div>
+
+    <div>
+
+        <h2>FinWise</h2>
+
+        <span>
+            PERSONAL FINANCE HEALTH COACH
+        </span>
+
+    </div>
+
+</div>
+
+
+<div class="header-status">
+
+    <span class="status-dot"></span>
+
+    Monthly Report
+
+</div>
+
+
+</header>
+
+<!-- ================= MAIN ================= -->
+
+<div class="container">
+
+
+<!-- PAGE HEADING -->
+
+<div class="page-heading">
+
+    <span class="tag">
+        FINANCIAL INSIGHTS
+    </span>
+
+    <h1>
+        Monthly Financial Report
+    </h1>
+
+    <p>
+        Review your monthly income, expenses,
+        savings and spending patterns.
+    </p>
+
+</div>
+
+
+<!-- ================= FINANCIAL SUMMARY ================= -->
+
+<div class="card">
+
+    <div class="card-title">
+
+        <div class="card-icon">
+            💰
+        </div>
+
+        <div>
+
+            <h2>
+                Monthly Summary
+            </h2>
+
+            <p class="card-subtitle">
+                Overview of your monthly finances
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="summary">
+
+
+        <div class="summary-box">
+
+            <span class="summary-label">
+                Total Income
+            </span>
+
+            <strong class="summary-value income-value">
+                ₹{{ total_income }}
+            </strong>
+
+        </div>
+
+
+        <div class="summary-box">
+
+            <span class="summary-label">
+                Total Expenses
+            </span>
+
+            <strong class="summary-value expense-value">
+                ₹{{ total_expenses }}
+            </strong>
+
+        </div>
+
+
+        <div class="summary-box">
+
+            <span class="summary-label">
+                Total Savings
+            </span>
+
+            <strong class="summary-value saving-value">
+                ₹{{ total_savings }}
+            </strong>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- ================= RATIOS ================= -->
+
+<div class="card">
+
+    <div class="card-title">
+
+        <div class="card-icon">
+            📈
+        </div>
+
+        <div>
+
+            <h2>
+                Monthly Financial Statistics
+            </h2>
+
+            <p class="card-subtitle">
+                Key indicators of your financial performance
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="statistics">
+
+
+        <div class="stat-box">
+
+            <div class="stat-header">
+
+                <span>
+                    Savings Ratio
+                </span>
+
+                <strong>
+                    {{ savings_ratio }}%
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div class="progress-bar"></div>
+
+            </div>
+
+        </div>
+
+
+        <div class="stat-box">
+
+            <div class="stat-header">
+
+                <span>
+                    Expense Ratio
+                </span>
+
+                <strong>
+                    {{ expense_ratio }}%
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div class="progress-bar"></div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- ================= EXPENSE BREAKDOWN ================= -->
+
+<div class="card">
+
+    <div class="card-title">
+
+        <div class="card-icon">
+            🧾
+        </div>
+
+        <div>
+
+            <h2>
+                Expense Breakdown
+            </h2>
+
+            <p class="card-subtitle">
+                Spending by expense category
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Expense Category
+                    </th>
+
+                    <th>
+                        Amount
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+
+                {% for expense in expense_categories %}
+
+                <tr>
+
+                    <td class="category">
+                        {{ expense.category }}
+                    </td>
+
+                    <td class="amount">
+                        ₹{{ expense.total }}
+                    </td>
+
+                </tr>
+
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="2"
+                        class="empty-row">
+
+                        No expense records available.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- ================= HIGHEST EXPENSE ================= -->
+
+{% if highest_expense %}
+
+<div class="card">
+
+    <div class="card-title">
+
+        <div class="card-icon">
+            🔎
+        </div>
+
+        <div>
+
+            <h2>
+                Highest Spending Category
+            </h2>
+
+            <p class="card-subtitle">
+                Category with the highest recorded expense
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="highlight">
+
+        <div class="highlight-label">
+            Highest Spending
+        </div>
+
+        <div class="highlight-category">
+            {{ highest_expense.category }}
+        </div>
+
+        <div class="highlight-amount">
+
+            Amount Spent:
+
+            <strong>
+                ₹{{ highest_expense.total }}
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endif %}
+
+
+<!-- ================= BALANCE ================= -->
+
+<div class="card">
+
+    <div class="card-title">
+
+        <div class="card-icon">
+            ⚖️
+        </div>
+
+        <div>
+
+            <h2>
+                Monthly Balance
+            </h2>
+
+            <p class="card-subtitle">
+                Comparison between your income and expenses
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="balance-box">
+
+
+        {% if total_savings > 0 %}
+
+        You had a positive balance of
+
+        <strong>
+            ₹{{ total_savings }}
+        </strong>
+
+        this month.
+
+
+        {% elif total_savings == 0 %}
+
+        Your income and expenses were equal
+        this month.
+
+
+        {% else %}
+
+        Your expenses were higher than your
+        income by
+
+        <strong>
+            ₹{{ total_savings|stringformat:"s"|slice:"1:" }}
+        </strong>.
+
+        {% endif %}
+
+
+    </div>
+
+</div>
+
+
+</div>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+
+<strong>FinWise</strong> —
+AI-Based Personal Finance Health Coach
+
+<br><br>
+
+Track • Analyze • Improve Your Financial Health
+
+
+</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Financial Profile | FinWise</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+
+        min-height: 100vh;
+
+        background:
+            radial-gradient(circle at top left,
+                rgba(59,130,246,0.20),
+                transparent 35%),
+            radial-gradient(circle at bottom right,
+                rgba(14,165,233,0.18),
+                transparent 35%),
+            linear-gradient(135deg, #eef5ff, #f8fafc);
+
+        color: #1e293b;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ================= HEADER ================= */
+
+    .top-header {
+        background: linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a,
+            #0369a1
+        );
+
+        color: white;
+
+        padding: 18px 6%;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        box-shadow:
+            0 5px 25px rgba(15,23,42,0.18);
+    }
+
+    .brand {
+        display: flex;
+
+        align-items: center;
+
+        gap: 12px;
+    }
+
+    .brand-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 12px;
+
+        background: rgba(255,255,255,0.14);
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 21px;
+
+        border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .brand h2 {
+        color: white;
+
+        font-size: 22px;
+
+        letter-spacing: 0.5px;
+    }
+
+    .brand span {
+        display: block;
+
+        font-size: 10px;
+
+        color: #cbd5e1;
+
+        margin-top: 2px;
+
+        letter-spacing: 1px;
+    }
+
+    .header-text {
+        color: #dbeafe;
+
+        font-size: 13px;
+    }
+
+    /* ================= MAIN ================= */
+
+    .main {
+        flex: 1;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        padding: 40px 20px;
+    }
+
+    .profile-container {
+        width: 100%;
+
+        max-width: 650px;
+    }
+
+    /* ================= CARD ================= */
+
+    .profile-card {
+        background: rgba(255,255,255,0.96);
+
+        padding: 38px;
+
+        border-radius: 20px;
+
+        border: 1px solid #e2e8f0;
+
+        box-shadow:
+            0 20px 45px rgba(15,23,42,0.10),
+            0 4px 10px rgba(15,23,42,0.04);
+    }
+
+    .profile-icon {
+        width: 65px;
+        height: 65px;
+
+        margin: 0 auto 18px;
+
+        border-radius: 18px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #dbeafe,
+                #e0f2fe
+            );
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 29px;
+
+        color: #2563eb;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .title h1 {
+        font-size: 28px;
+
+        color: #0f172a;
+
+        margin-bottom: 8px;
+    }
+
+    .title p {
+        color: #64748b;
+
+        font-size: 14px;
+
+        line-height: 1.6;
+
+        margin-bottom: 30px;
+    }
+
+    /* ================= FORM GRID ================= */
+
+    .form-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 2px;
+    }
+
+    label {
+        display: block;
+
+        margin-bottom: 8px;
+
+        font-weight: 600;
+
+        color: #334155;
+
+        font-size: 13px;
+    }
+
+    .input-wrapper {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+
+        left: 13px;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        color: #64748b;
+
+        font-size: 15px;
+
+        pointer-events: none;
+    }
+
+    input,
+    select {
+        width: 100%;
+
+        padding: 13px 13px 13px 40px;
+
+        border: 1px solid #cbd5e1;
+
+        border-radius: 10px;
+
+        background: #f8fafc;
+
+        color: #1e293b;
+
+        font-size: 14px;
+
+        outline: none;
+
+        transition: 0.25s ease;
+
+        cursor: pointer;
+    }
+
+    input {
+        cursor: text;
+    }
+
+    input:focus,
+    select:focus {
+        background: white;
+
+        border-color: #3b82f6;
+
+        box-shadow:
+            0 0 0 4px rgba(59,130,246,0.10);
+    }
+
+    select {
+        appearance: auto;
+    }
+
+    /* ================= INFORMATION ================= */
+
+    .info-box {
+        margin-top: 25px;
+
+        padding: 14px 16px;
+
+        border-radius: 11px;
+
+        background: #eff6ff;
+
+        border: 1px solid #dbeafe;
+
+        color: #475569;
+
+        font-size: 12px;
+
+        line-height: 1.6;
+    }
+
+    .info-box strong {
+        color: #1e40af;
+    }
+
+    /* ================= BUTTON ================= */
+
+    .continue-button {
+        width: 100%;
+
+        padding: 14px;
+
+        margin-top: 25px;
+
+        border: none;
+
+        border-radius: 10px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #0284c7
+            );
+
+        color: white;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 8px 20px rgba(37,99,235,0.22);
+
+        transition: 0.25s ease;
+    }
+
+    .continue-button:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 12px 25px rgba(37,99,235,0.30);
+    }
+
+    /* ================= PROGRESS ================= */
+
+    .progress-section {
+        margin-bottom: 27px;
+    }
+
+    .progress-text {
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        margin-bottom: 8px;
+
+        font-size: 11px;
+
+        color: #64748b;
+    }
+
+    .progress-text strong {
+        color: #2563eb;
+    }
+
+    .progress {
+        width: 100%;
+
+        height: 6px;
+
+        background: #e2e8f0;
+
+        border-radius: 10px;
+
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        width: 25%;
+
+        height: 100%;
+
+        background:
+            linear-gradient(
+                90deg,
+                #2563eb,
+                #0284c7
+            );
+
+        border-radius: 10px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        background: #0f172a;
+
+        color: #94a3b8;
+
+        text-align: center;
+
+        padding: 20px 15px;
+
+        font-size: 12px;
+    }
+
+    footer strong {
+        color: #e2e8f0;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 650px) {
+
+        .top-header {
+            padding: 16px 5%;
+        }
+
+        .header-text {
+            display: none;
+        }
+
+        .main {
+            padding: 30px 15px;
+        }
+
+        .profile-card {
+            padding: 28px 22px;
+        }
+
+        .form-grid {
+            grid-template-columns: 1fr;
+            gap: 18px;
+        }
+
+        .title h1 {
+            font-size: 25px;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="top-header">
+
+
+<div class="brand">
+
+    <div class="brand-icon">
+        💰
+    </div>
+
+    <div>
+
+        <h2>FinWise</h2>
+
+        <span>
+            PERSONAL FINANCE HEALTH COACH
+        </span>
+
+    </div>
+
+</div>
+
+
+<div class="header-text">
+    Build Your Financial Profile
+</div>
+
+
+</header>
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+<div class="profile-container">
+
+    <div class="profile-card">
+
+
+        <!-- ICON -->
+
+        <div class="profile-icon">
+            👤
+        </div>
+
+
+        <!-- TITLE -->
+
+        <div class="title">
+
+            <h1>
+                Financial Profile
+            </h1>
+
+            <p>
+                Enter your basic details to begin
+                your financial health assessment.
+            </p>
+
+        </div>
+
+
+        <!-- ================= PROGRESS ================= -->
+
+        <div class="progress-section">
+
+            <div class="progress-text">
+
+                <span>
+                    Profile Setup
+                </span>
+
+                <strong>
+                    Step 1 of 4
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div class="progress-bar"></div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= FORM ================= -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <div class="form-grid">
+
+
+                <!-- AGE -->
+
+                <div class="form-group">
+
+                    <label for="age">
+                        Age
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🎂
+                        </span>
+
+                        <input
+                            type="number"
+                            id="age"
+                            name="age"
+                            min="18"
+                            max="100"
+                            placeholder="Enter your age"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- GENDER -->
+
+                <div class="form-group">
+
+                    <label for="gender">
+                        Gender
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            👤
+                        </span>
+
+                        <select
+                            id="gender"
+                            name="gender"
+                            required
+                        >
+
+                            <option value="">
+                                Select Gender
+                            </option>
+
+                            <option value="Male">
+                                Male
+                            </option>
+
+                            <option value="Female">
+                                Female
+                            </option>
+
+                            <option value="Other">
+                                Other
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EDUCATION -->
+
+                <div class="form-group">
+
+                    <label for="education_level">
+                        Education Level
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🎓
+                        </span>
+
+                        <select
+                            id="education_level"
+                            name="education_level"
+                            required
+                        >
+
+                            <option value="">
+                                Select Education
+                            </option>
+
+                            <option value="High School">
+                                High School
+                            </option>
+
+                            <option value="Bachelor">
+                                Bachelor
+                            </option>
+
+                            <option value="Master">
+                                Master
+                            </option>
+
+                            <option value="PhD">
+                                PhD
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- EMPLOYMENT -->
+
+                <div class="form-group">
+
+                    <label for="employment_status">
+                        Employment Status
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            💼
+                        </span>
+
+                        <select
+                            id="employment_status"
+                            name="employment_status"
+                            required
+                        >
+
+                            <option value="">
+                                Select Employment Status
+                            </option>
+
+                            <option value="Employed">
+                                Employed
+                            </option>
+
+                            <option value="Self-Employed">
+                                Self-Employed
+                            </option>
+
+                            <option value="Unemployed">
+                                Unemployed
+                            </option>
+
+                            <option value="Student">
+                                Student
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- INFORMATION -->
+
+            <div class="info-box">
+
+                <strong>Why do we need this?</strong><br>
+
+                These basic profile details are used as part
+                of your financial health assessment and
+                help personalize your financial analysis.
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="continue-button"
+            >
+                Continue to Income Tracker →
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+</div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+
+<strong>FinWise</strong> —
+AI-Based Personal Finance Health Coach
+
+<br><br>
+
+Track • Analyze • Improve Your Financial Health
+
+
+</footer>
+
+</body>
+
+</html>

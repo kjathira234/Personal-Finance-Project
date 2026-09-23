@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Financial Health Report</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+
+    body {
+
+        min-height: 100vh;
+
+        background:
+            radial-gradient(
+                circle at 10% 10%,
+                rgba(37, 99, 235, 0.12),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 90% 80%,
+                rgba(14, 165, 233, 0.12),
+                transparent 30%
+            ),
+            linear-gradient(
+                135deg,
+                #eef5ff,
+                #f8fbff
+            );
+
+        color: #1e293b;
+
+    }
+
+
+    /* ============================
+       HEADER
+    ============================ */
+
+    .header {
+
+        width: 100%;
+
+        background: rgba(15, 23, 42, 0.97);
+
+        color: white;
+
+        padding: 18px 6%;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        box-shadow:
+            0 5px 25px rgba(15, 23, 42, 0.18);
+
+        position: sticky;
+
+        top: 0;
+
+        z-index: 100;
+
+    }
+
+
+    .logo {
+
+        font-size: 25px;
+
+        font-weight: 800;
+
+        letter-spacing: 0.5px;
+
+    }
+
+
+    .logo span {
+
+        color: #38bdf8;
+
+    }
+
+
+    .header-status {
+
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        font-size: 13px;
+
+        color: #cbd5e1;
+
+    }
+
+
+    .status-dot {
+
+        width: 9px;
+
+        height: 9px;
+
+        background: #22c55e;
+
+        border-radius: 50%;
+
+        box-shadow:
+            0 0 10px #22c55e;
+
+    }
+
+
+    /* ============================
+       CONTAINER
+    ============================ */
+
+    .container {
+
+        width: 92%;
+
+        max-width: 1050px;
+
+        margin: 45px auto;
+
+    }
+
+
+    /* ============================
+       MAIN TITLE
+    ============================ */
+
+    h1 {
+
+        text-align: center;
+
+        color: #0f172a;
+
+        font-size: 38px;
+
+        font-weight: 800;
+
+        margin-bottom: 35px;
+
+        letter-spacing: -0.5px;
+
+    }
+
+
+    h1::after {
+
+        content: "";
+
+        display: block;
+
+        width: 75px;
+
+        height: 4px;
+
+        margin: 14px auto 0;
+
+        border-radius: 10px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #2563eb,
+                #0ea5e9
+            );
+
+    }
+
+
+    /* ============================
+       MAIN CARDS
+    ============================ */
+
+    .card {
+
+        background:
+            rgba(255, 255, 255, 0.94);
+
+        padding: 30px;
+
+        margin-bottom: 22px;
+
+        border-radius: 20px;
+
+        border: 1px solid #e2e8f0;
+
+        box-shadow:
+            0 15px 40px
+            rgba(15, 23, 42, 0.08);
+
+        backdrop-filter: blur(10px);
+
+        position: relative;
+
+        overflow: hidden;
+
+    }
+
+
+    .card::before {
+
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+
+        left: 0;
+
+        width: 100%;
+
+        height: 4px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #2563eb,
+                #0ea5e9,
+                #38bdf8
+            );
+
+    }
+
+
+    .card h2 {
+
+        color: #0f172a;
+
+        font-size: 21px;
+
+        margin-bottom: 25px;
+
+        font-weight: 750;
+
+    }
+
+
+    /* ============================
+       PREDICTION STATUS
+    ============================ */
+
+    .status {
+
+        text-align: center;
+
+        font-size: 35px;
+
+        font-weight: 800;
+
+        padding: 25px;
+
+        border-radius: 15px;
+
+        background: #f8fafc;
+
+        letter-spacing: 1px;
+
+    }
+
+
+    .good {
+
+        color: #15803d;
+
+        background:
+            linear-gradient(
+                135deg,
+                #f0fdf4,
+                #dcfce7
+            );
+
+        border: 1px solid #bbf7d0;
+
+        box-shadow:
+            0 8px 20px
+            rgba(22, 163, 74, 0.10);
+
+    }
+
+
+    .average {
+
+        color: #c2410c;
+
+        background:
+            linear-gradient(
+                135deg,
+                #fff7ed,
+                #ffedd5
+            );
+
+        border: 1px solid #fed7aa;
+
+        box-shadow:
+            0 8px 20px
+            rgba(234, 88, 12, 0.10);
+
+    }
+
+
+    .poor {
+
+        color: #dc2626;
+
+        background:
+            linear-gradient(
+                135deg,
+                #fff1f2,
+                #ffe4e6
+            );
+
+        border: 1px solid #fecdd3;
+
+        box-shadow:
+            0 8px 20px
+            rgba(220, 38, 38, 0.10);
+
+    }
+
+
+    /* ============================
+       SUMMARY
+    ============================ */
+
+    .summary {
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 18px;
+
+    }
+
+
+    .box {
+
+        background:
+            linear-gradient(
+                145deg,
+                #ffffff,
+                #f8fbff
+            );
+
+        padding: 23px 15px;
+
+        border-radius: 15px;
+
+        text-align: center;
+
+        border: 1px solid #e2e8f0;
+
+        transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease;
+
+    }
+
+
+    .box:hover {
+
+        transform: translateY(-4px);
+
+        box-shadow:
+            0 12px 25px
+            rgba(37, 99, 235, 0.10);
+
+    }
+
+
+    .box strong {
+
+        display: block;
+
+        font-size: 26px;
+
+        margin-top: 10px;
+
+        color: #2563eb;
+
+        font-weight: 800;
+
+    }
+
+
+    /* ============================
+       RATIO SECTION
+    ============================ */
+
+    .ratio {
+
+        margin-top: 25px;
+
+        padding-top: 20px;
+
+        border-top: 1px solid #e2e8f0;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(3, 1fr);
+
+        gap: 15px;
+
+    }
+
+
+    .ratio p {
+
+        background: #f8fafc;
+
+        border-radius: 12px;
+
+        padding: 15px;
+
+        color: #64748b;
+
+        font-size: 14px;
+
+        border: 1px solid #e2e8f0;
+
+    }
+
+
+    .ratio strong {
+
+        display: block;
+
+        margin-top: 7px;
+
+        color: #0f172a;
+
+        font-size: 19px;
+
+    }
+
+
+    /* ============================
+       RECOMMENDATION
+    ============================ */
+
+    .recommendation {
+
+        background:
+            linear-gradient(
+                135deg,
+                #eff6ff,
+                #e0f2fe
+            );
+
+        padding: 20px;
+
+        margin-bottom: 10px;
+
+        border-radius: 12px;
+
+        border: 1px solid #bfdbfe;
+
+        color: #1e40af;
+
+        line-height: 1.7;
+
+        font-size: 15px;
+
+    }
+
+
+    /* ============================
+       RISK MANAGEMENT
+    ============================ */
+
+    .risk {
+
+        background:
+            linear-gradient(
+                135deg,
+                #fff7ed,
+                #fffbeb
+            );
+
+        padding: 20px;
+
+        margin-bottom: 10px;
+
+        border-radius: 12px;
+
+        border: 1px solid #fed7aa;
+
+        color: #92400e;
+
+        line-height: 1.7;
+
+        font-size: 15px;
+
+    }
+
+
+    /* ============================
+       BOTTOM NAVIGATION
+    ============================ */
+
+    .actions {
+
+        text-align: center;
+
+        margin-top: 30px;
+
+    }
+
+
+    .button {
+
+        display: inline-flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 13px 24px;
+
+        margin: 5px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #0284c7
+            );
+
+        color: white;
+
+        text-decoration: none;
+
+        border-radius: 10px;
+
+        font-weight: 700;
+
+        font-size: 14px;
+
+        box-shadow:
+            0 8px 18px
+            rgba(37, 99, 235, 0.20);
+
+        transition: 0.25s ease;
+
+    }
+
+
+    .button:hover {
+
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 12px 25px
+            rgba(37, 99, 235, 0.28);
+
+    }
+
+
+    .home-button {
+
+        background: #0f172a;
+
+        box-shadow:
+            0 8px 18px
+            rgba(15, 23, 42, 0.15);
+
+    }
+
+
+    .home-button:hover {
+
+        background: #1e293b;
+
+    }
+
+
+    /* ============================
+       FOOTER
+    ============================ */
+
+    .footer {
+
+        margin-top: 55px;
+
+        background: #0f172a;
+
+        color: #94a3b8;
+
+        text-align: center;
+
+        padding: 25px 20px;
+
+    }
+
+
+    .footer strong {
+
+        color: #38bdf8;
+
+        font-size: 17px;
+
+    }
+
+
+    .footer p {
+
+        font-size: 13px;
+
+        margin-top: 7px;
+
+    }
+
+
+    /* ============================
+       MOBILE
+    ============================ */
+
+    @media (max-width: 700px) {
+
+        .header {
+
+            padding: 16px 5%;
+
+        }
+
+
+        .logo {
+
+            font-size: 21px;
+
+        }
+
+
+        .header-status {
+
+            font-size: 11px;
+
+        }
+
+
+        .container {
+
+            width: 94%;
+
+            margin: 30px auto;
+
+        }
+
+
+        h1 {
+
+            font-size: 29px;
+
+        }
+
+
+        .card {
+
+            padding: 22px;
+
+            border-radius: 16px;
+
+        }
+
+
+        .summary {
+
+            grid-template-columns: 1fr;
+
+        }
+
+
+        .ratio {
+
+            grid-template-columns: 1fr;
+
+        }
+
+
+        .status {
+
+            font-size: 29px;
+
+        }
+
+
+        .button {
+
+            width: 100%;
+
+            margin: 5px 0;
+
+        }
+
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ============================ -->
+
+<!-- HEADER -->
+
+<!-- ============================ -->
+
+<header class="header">
+
+
+<div class="logo">
+
+    Fin<span>Wise</span>
+
+</div>
+
+
+<div class="header-status">
+
+    <span class="status-dot"></span>
+
+    AI Financial Health Assessment
+
+</div>
+
+
+</header>
+
+<div class="container">
+
+<h1>
+
+
+My Financial Health Report
+
+
+</h1>
+
+<!-- ============================ -->
+
+<!-- FINANCIAL HEALTH PREDICTION -->
+
+<!-- ============================ -->
+
+<div class="card">
+
+
+<h2>
+
+    Financial Health Prediction
+
+</h2>
+
+
+{% if financial_status == "Good" %}
+
+    <div class="status good">
+
+        GOOD
+
+    </div>
+
+
+{% elif financial_status == "Average" %}
+
+    <div class="status average">
+
+        AVERAGE
+
+    </div>
+
+
+{% elif financial_status == "Poor" %}
+
+    <div class="status poor">
+
+        POOR
+
+    </div>
+
+
+{% else %}
+
+    <div class="status">
+
+        {{ financial_status }}
+
+    </div>
+
+{% endif %}
+
+
+</div>
+
+<!-- ============================ -->
+
+<!-- FINANCIAL SUMMARY -->
+
+<!-- ============================ -->
+
+<div class="card">
+
+
+<h2>
+
+    Monthly Financial Summary
+
+</h2>
+
+
+<div class="summary">
+
+
+    <div class="box">
+
+        Total Income
+
+        <strong>
+
+            ₹{{ total_income }}
+
+        </strong>
+
+    </div>
+
+
+    <div class="box">
+
+        Total Expenses
+
+        <strong>
+
+            ₹{{ total_expenses }}
+
+        </strong>
+
+    </div>
+
+
+    <div class="box">
+
+        Total Savings
+
+        <strong>
+
+            ₹{{ savings }}
+
+        </strong>
+
+    </div>
+
+
+</div>
+
+
+<div class="ratio">
+
+
+    <p>
+
+        Savings Ratio:
+
+        <strong>
+
+            {{ savings_ratio }}%
+
+        </strong>
+
+    </p>
+
+
+    <p>
+
+        Expense Ratio:
+
+        <strong>
+
+            {{ expense_ratio }}%
+
+        </strong>
+
+    </p>
+
+
+    <p>
+
+        Debt-to-Income Ratio:
+
+        <strong>
+
+            {{ debt_to_income_ratio }}%
+
+        </strong>
+
+    </p>
+
+
+</div>
+
+</div>
+
+<!-- ============================ -->
+
+<!-- CREDIT SCORE -->
+
+<!-- ============================ -->
+
+<div class="card">
+
+
+<h2>
+
+    Automatic Credit Score
+
+</h2>
+
+
+<div class="summary">
+
+
+    <div class="box">
+
+        Credit Score
+
+        <strong>
+
+            {{ credit_score }}
+
+        </strong>
+
+    </div>
+
+
+    <div class="box">
+
+        Total Loan
+
+        <strong>
+
+            ₹{{ total_loan }}
+
+        </strong>
+
+    </div>
+
+
+    <div class="box">
+
+        Monthly EMI
+
+        <strong>
+
+            ₹{{ total_emi }}
+
+        </strong>
+
+    </div>
+
+
+</div>
+
+
+</div>
+
+<!-- ============================ -->
+
+<!-- PERSONALIZED RECOMMENDATION -->
+
+<!-- ============================ -->
+
+<div class="card">
+
+
+<h2>
+
+    Personalized Recommendation
+
+</h2>
+
+
+<div class="recommendation">
+
+    ✓ {{ recommendation }}
+
+</div>
+
+
+</div>
+
+<!-- ============================ -->
+
+<!-- FINANCIAL RISK MANAGEMENT -->
+
+<!-- ============================ -->
+
+<div class="card">
+
+
+<h2>
+
+    Financial Risk Management
+
+</h2>
+
+
+<div class="risk">
+
+    ⚠ {{ risk_management }}
+
+</div>
+
+
+</div>
+
+<!-- ============================ -->
+
+<!-- NAVIGATION -->
+
+<!-- ============================ -->
+
+<div class="actions">
+
+
+<a href="{% url 'financial_analysis' %}"
+
+   class="button">
+
+    ← Back to Financial Analysis
+
+</a>
+
+
+<a href="{% url 'home' %}"
+
+   class="button home-button">
+
+    Back to Home
+
+</a>
+
+
+</div>
+
+</div>
+
+<!-- ============================ -->
+
+<!-- FOOTER -->
+
+<!-- ============================ -->
+
+<footer class="footer">
+
+
+<strong>FinWise</strong>
+
+
+<p>
+
+    AI-Based Personal Finance Health Coach
+
+</p>
+
+
+</footer>
+
+</body>
+
+</html>

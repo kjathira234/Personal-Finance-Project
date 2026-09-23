@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Income Tracker | FinWise</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+
+        background:
+            radial-gradient(
+                circle at 10% 10%,
+                rgba(37, 99, 235, 0.12),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 90% 80%,
+                rgba(14, 165, 233, 0.12),
+                transparent 30%
+            ),
+            linear-gradient(
+                135deg,
+                #eef5ff,
+                #f8fbff
+            );
+
+        color: #1e293b;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header {
+        width: 100%;
+
+        background: rgba(15, 23, 42, 0.97);
+
+        color: white;
+
+        padding: 18px 6%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        box-shadow:
+            0 5px 25px rgba(15, 23, 42, 0.18);
+
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+
+    .logo {
+        font-size: 25px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+
+    .logo span {
+        color: #38bdf8;
+    }
+
+
+    .header-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        font-size: 13px;
+        color: #cbd5e1;
+    }
+
+
+    .status-dot {
+        width: 9px;
+        height: 9px;
+
+        background: #22c55e;
+
+        border-radius: 50%;
+
+        box-shadow:
+            0 0 10px #22c55e;
+    }
+
+
+    /* =========================
+       MAIN CONTAINER
+    ========================= */
+
+    .container {
+        width: 92%;
+        max-width: 1050px;
+
+        margin: 45px auto;
+    }
+
+
+    /* =========================
+       PAGE TITLE
+    ========================= */
+
+    .page-heading {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+
+    .page-icon {
+        width: 65px;
+        height: 65px;
+
+        margin: 0 auto 15px;
+
+        border-radius: 18px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #0ea5e9
+            );
+
+        color: white;
+
+        font-size: 30px;
+
+        box-shadow:
+            0 10px 25px
+            rgba(37, 99, 235, 0.28);
+    }
+
+
+    h1 {
+        color: #0f172a;
+
+        font-size: 38px;
+
+        font-weight: 800;
+
+        margin-bottom: 8px;
+    }
+
+
+    .subtitle {
+        color: #64748b;
+
+        font-size: 15px;
+
+        margin: 0;
+    }
+
+
+    /* =========================
+       CARD
+    ========================= */
+
+    .card {
+        background:
+            rgba(255, 255, 255, 0.94);
+
+        padding: 30px;
+
+        border-radius: 20px;
+
+        border: 1px solid #e2e8f0;
+
+        box-shadow:
+            0 15px 40px
+            rgba(15, 23, 42, 0.08);
+
+        margin-bottom: 25px;
+
+        position: relative;
+
+        overflow: hidden;
+    }
+
+
+    .card::before {
+        content: "";
+
+        position: absolute;
+
+        top: 0;
+        left: 0;
+
+        width: 100%;
+        height: 4px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #2563eb,
+                #0ea5e9,
+                #38bdf8
+            );
+    }
+
+
+    .card-header {
+        display: flex;
+
+        align-items: center;
+
+        gap: 14px;
+
+        margin-bottom: 25px;
+    }
+
+
+    .card-icon {
+        width: 45px;
+        height: 45px;
+
+        border-radius: 12px;
+
+        display: flex;
+
+        align-items: center;
+        justify-content: center;
+
+        background: #eff6ff;
+
+        color: #2563eb;
+
+        font-size: 22px;
+
+        font-weight: bold;
+    }
+
+
+    .card-header h2 {
+        color: #0f172a;
+
+        font-size: 21px;
+
+        margin-bottom: 3px;
+    }
+
+
+    .card-header p {
+        color: #64748b;
+
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       FORM
+    ========================= */
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+
+    label {
+        display: block;
+
+        font-weight: 700;
+
+        margin-bottom: 8px;
+
+        color: #334155;
+
+        font-size: 14px;
+    }
+
+
+    input,
+    textarea {
+        width: 100%;
+
+        padding: 13px 15px;
+
+        border: 1px solid #dbe3ef;
+
+        border-radius: 10px;
+
+        background: #f8fafc;
+
+        color: #1e293b;
+
+        font-size: 15px;
+
+        outline: none;
+
+        transition: 0.25s ease;
+    }
+
+
+    input:hover,
+    textarea:hover {
+        border-color: #93c5fd;
+    }
+
+
+    input:focus,
+    textarea:focus {
+        background: white;
+
+        border-color: #2563eb;
+
+        box-shadow:
+            0 0 0 4px
+            rgba(37, 99, 235, 0.10);
+    }
+
+
+    textarea {
+        resize: vertical;
+
+        min-height: 90px;
+    }
+
+
+    /* =========================
+       ERROR
+    ========================= */
+
+    .error {
+        color: #b91c1c;
+
+        background: #fef2f2;
+
+        border: 1px solid #fecaca;
+
+        padding: 13px 15px;
+
+        border-radius: 10px;
+
+        margin-bottom: 18px;
+
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       ADD INCOME BUTTON
+    ========================= */
+
+    .btn {
+        width: 100%;
+
+        padding: 14px;
+
+        border: none;
+
+        border-radius: 11px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #0284c7
+            );
+
+        color: white;
+
+        font-size: 15px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        box-shadow:
+            0 8px 18px
+            rgba(37, 99, 235, 0.22);
+
+        transition: 0.25s ease;
+    }
+
+
+    .btn:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 12px 25px
+            rgba(37, 99, 235, 0.30);
+    }
+
+
+    /* =========================
+       RECORDS TABLE
+    ========================= */
+
+    .table-wrapper {
+        width: 100%;
+
+        overflow-x: auto;
+
+        border-radius: 14px;
+
+        border: 1px solid #e2e8f0;
+    }
+
+
+    table {
+        width: 100%;
+
+        min-width: 650px;
+
+        border-collapse: collapse;
+
+        background: white;
+    }
+
+
+    th {
+        background: #0f172a;
+
+        color: white;
+
+        padding: 16px;
+
+        text-align: left;
+
+        font-size: 13px;
+
+        letter-spacing: 0.3px;
+    }
+
+
+    td {
+        padding: 15px 16px;
+
+        border-bottom: 1px solid #edf2f7;
+
+        color: #334155;
+
+        font-size: 14px;
+    }
+
+
+    tbody tr {
+        transition: 0.2s ease;
+    }
+
+
+    tbody tr:hover {
+        background: #f8fbff;
+    }
+
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+
+    td:nth-child(2) {
+        color: #15803d;
+
+        font-weight: 700;
+    }
+
+
+    .empty {
+        text-align: center;
+
+        color: #94a3b8;
+
+        padding: 35px !important;
+
+        font-size: 14px;
+    }
+
+
+    /* =========================
+       NAVIGATION
+    ========================= */
+
+    .navigation {
+        display: flex;
+
+        justify-content: center;
+
+        gap: 12px;
+
+        flex-wrap: wrap;
+
+        margin-top: 25px;
+    }
+
+
+    .back {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        padding: 12px 19px;
+
+        text-decoration: none;
+
+        color: white;
+
+        font-weight: 700;
+
+        font-size: 13px;
+
+        border-radius: 10px;
+
+        background: #0f172a;
+
+        transition: 0.25s ease;
+
+        box-shadow:
+            0 6px 15px
+            rgba(15, 23, 42, 0.12);
+    }
+
+
+    .back:hover {
+        background: #1e293b;
+
+        transform: translateY(-2px);
+    }
+
+
+    .back.primary {
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #0284c7
+            );
+
+        box-shadow:
+            0 7px 17px
+            rgba(37, 99, 235, 0.20);
+    }
+
+
+    .back.primary:hover {
+        box-shadow:
+            0 11px 23px
+            rgba(37, 99, 235, 0.28);
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+        margin-top: 55px;
+
+        background: #0f172a;
+
+        color: #94a3b8;
+
+        text-align: center;
+
+        padding: 25px 20px;
+    }
+
+
+    .footer strong {
+        color: #38bdf8;
+
+        font-size: 17px;
+    }
+
+
+    .footer p {
+        font-size: 13px;
+
+        margin-top: 7px;
+    }
+
+
+    /* =========================
+       MOBILE
+    ========================= */
+
+    @media (max-width: 700px) {
+
+        .header {
+            padding: 16px 5%;
+        }
+
+
+        .logo {
+            font-size: 21px;
+        }
+
+
+        .header-status {
+            font-size: 11px;
+        }
+
+
+        .container {
+            width: 94%;
+
+            margin: 30px auto;
+        }
+
+
+        h1 {
+            font-size: 30px;
+        }
+
+
+        .card {
+            padding: 22px;
+
+            border-radius: 16px;
+        }
+
+
+        .navigation {
+            flex-direction: column;
+        }
+
+
+        .back {
+            width: 100%;
+        }
+
+    }
+
+</style>
+
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+
+<div class="logo">
+    Fin<span>Wise</span>
+</div>
+
+
+<div class="header-status">
+
+    <span class="status-dot"></span>
+
+    Income Management
+
+</div>
+
+
+</header>
+
+<div class="container">
+
+
+<!-- =========================
+     PAGE HEADING
+========================= -->
+
+<div class="page-heading">
+
+    <div class="page-icon">
+        ₹
+    </div>
+
+    <h1>Income Tracker</h1>
+
+    <p class="subtitle">
+        Record your income to monitor your financial stability.
+    </p>
+
+</div>
+
+
+<!-- =========================
+     ADD INCOME FORM
+========================= -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            +
+        </div>
+
+        <div>
+
+            <h2>Add Income</h2>
+
+            <p>
+                Enter your income details below
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+
+        <!-- Income Source -->
+
+        <div class="form-group">
+
+            <label for="source">
+                Income Source
+            </label>
+
+            <input
+                type="text"
+                id="source"
+                name="source"
+                placeholder="Example: Salary, Freelance, Business"
+                required
+            >
+
+        </div>
+
+
+        <!-- Amount -->
+
+        <div class="form-group">
+
+            <label for="amount">
+                Amount
+            </label>
+
+            <input
+                type="number"
+                id="amount"
+                name="amount"
+                min="0"
+                step="0.01"
+                placeholder="Enter income amount"
+                required
+            >
+
+        </div>
+
+
+        <!-- Date -->
+
+        <div class="form-group">
+
+            <label for="date">
+                Date
+            </label>
+
+            <input
+                type="date"
+                id="date"
+                name="date"
+                required
+            >
+
+        </div>
+
+
+        <!-- Description -->
+
+        <div class="form-group">
+
+            <label for="description">
+                Description
+            </label>
+
+            <textarea
+                id="description"
+                name="description"
+                placeholder="Optional description"
+            ></textarea>
+
+        </div>
+
+
+        <!-- Error Messages -->
+
+        {% if form.errors %}
+
+            <div class="error">
+
+                {{ form.errors }}
+
+            </div>
+
+        {% endif %}
+
+
+        <!-- Submit -->
+
+        <button type="submit" class="btn">
+
+            + Add Income
+
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- =========================
+     INCOME RECORDS
+========================= -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            ≡
+        </div>
+
+        <div>
+
+            <h2>My Income Records</h2>
+
+            <p>
+                Your saved income transactions
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Source</th>
+
+                    <th>Amount</th>
+
+                    <th>Date</th>
+
+                    <th>Description</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for income in incomes %}
+
+                <tr>
+
+                    <td>
+                        {{ income.source }}
+                    </td>
+
+                    <td>
+                        ₹{{ income.amount }}
+                    </td>
+
+                    <td>
+                        {{ income.date }}
+                    </td>
+
+                    <td>
+                        {{ income.description|default:"-" }}
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="4" class="empty">
+
+                        No income records yet.
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<div class="navigation">
+
+    <a href="{% url 'home' %}"
+       class="back">
+
+        ← Back to Home
+
+    </a>
+
+
+    <a href="{% url 'expense_tracker' %}"
+       class="back primary">
+
+        Expense Tracker →
+
+    </a>
+
+
+    <a href="{% url 'loan_information' %}"
+       class="back primary">
+
+        Loan Information →
+
+    </a>
+
+
+    <a href="{% url 'financial_analysis' %}"
+       class="back primary">
+
+        Financial Analysis →
+
+    </a>
+
+</div>
+
+
+</div>
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer class="footer">
+
+
+<strong>FinWise</strong>
+
+<p>
+    AI-Based Personal Finance Health Coach
+</p>
+
+
+</footer>
+
+</body>
+
+</html>

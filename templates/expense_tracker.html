@@ -1,0 +1,745 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Expense Tracker | FinWise</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Arial, sans-serif;
+    }
+
+    body {
+        min-height: 100vh;
+        background:
+            radial-gradient(circle at 10% 10%, rgba(37, 99, 235, 0.15), transparent 30%),
+            radial-gradient(circle at 90% 80%, rgba(14, 165, 233, 0.12), transparent 30%),
+            linear-gradient(135deg, #eef5ff, #f8fbff);
+        color: #1e293b;
+        padding: 0;
+    }
+
+    /* ================= HEADER ================= */
+
+    .header {
+        background: rgba(15, 23, 42, 0.96);
+        color: white;
+        padding: 18px 6%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 5px 25px rgba(15, 23, 42, 0.18);
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(12px);
+    }
+
+    .logo {
+        font-size: 24px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    .logo span {
+        color: #38bdf8;
+    }
+
+    .header-status {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 13px;
+        color: #cbd5e1;
+    }
+
+    .status-dot {
+        width: 9px;
+        height: 9px;
+        background: #22c55e;
+        border-radius: 50%;
+        box-shadow: 0 0 10px #22c55e;
+    }
+
+    /* ================= CONTAINER ================= */
+
+    .container {
+        width: 92%;
+        max-width: 1100px;
+        margin: 45px auto;
+    }
+
+    /* ================= PAGE TITLE ================= */
+
+    .page-heading {
+        text-align: center;
+        margin-bottom: 35px;
+    }
+
+    .page-heading .icon {
+        width: 65px;
+        height: 65px;
+        margin: 0 auto 15px;
+        border-radius: 18px;
+        background: linear-gradient(135deg, #2563eb, #0ea5e9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: white;
+        font-size: 30px;
+        box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    }
+
+    h1 {
+        font-size: 38px;
+        font-weight: 800;
+        color: #0f172a;
+        margin-bottom: 8px;
+    }
+
+    .page-heading p {
+        color: #64748b;
+        font-size: 15px;
+    }
+
+    /* ================= CARDS ================= */
+
+    .card {
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(226, 232, 240, 0.9);
+        border-radius: 20px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+        backdrop-filter: blur(10px);
+    }
+
+    .card:hover {
+        box-shadow: 0 18px 45px rgba(15, 23, 42, 0.12);
+    }
+
+    .card-header {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 25px;
+    }
+
+    .card-icon {
+        width: 45px;
+        height: 45px;
+        border-radius: 12px;
+        background: #eff6ff;
+        color: #2563eb;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 21px;
+    }
+
+    .loan-icon {
+        background: #ecfeff;
+        color: #0891b2;
+    }
+
+    .card-header h2 {
+        font-size: 22px;
+        color: #0f172a;
+    }
+
+    .card-header p {
+        font-size: 13px;
+        color: #64748b;
+        margin-top: 3px;
+    }
+
+    /* ================= FORM ================= */
+
+    form p {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+        font-size: 14px;
+        font-weight: 700;
+        color: #334155;
+        margin-bottom: 8px;
+    }
+
+    input,
+    select,
+    textarea {
+        width: 100%;
+        padding: 13px 15px;
+        border: 1px solid #dbe3ef;
+        border-radius: 10px;
+        background: #f8fafc;
+        color: #1e293b;
+        font-size: 15px;
+        outline: none;
+        transition: 0.25s ease;
+    }
+
+    input:hover,
+    select:hover,
+    textarea:hover {
+        border-color: #93c5fd;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+        background: white;
+        border-color: #2563eb;
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.10);
+    }
+
+    textarea {
+        resize: vertical;
+        min-height: 90px;
+    }
+
+    /* ================= BUTTON ================= */
+
+    button {
+        width: 100%;
+        border: none;
+        padding: 14px 22px;
+        border-radius: 11px;
+        background: linear-gradient(135deg, #2563eb, #0284c7);
+        color: white;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        transition: 0.25s ease;
+        box-shadow: 0 8px 18px rgba(37, 99, 235, 0.22);
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 25px rgba(37, 99, 235, 0.3);
+    }
+
+    button:active {
+        transform: translateY(0);
+    }
+
+    .loan-button {
+        background: linear-gradient(135deg, #0891b2, #0284c7);
+    }
+
+    /* ================= TABLE ================= */
+
+    .table-wrapper {
+        width: 100%;
+        overflow-x: auto;
+        border-radius: 14px;
+        border: 1px solid #e2e8f0;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 650px;
+        background: white;
+    }
+
+    th {
+        background: #0f172a;
+        color: white;
+        padding: 16px;
+        text-align: left;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 0.3px;
+    }
+
+    td {
+        padding: 15px 16px;
+        border-bottom: 1px solid #edf2f7;
+        color: #334155;
+        font-size: 14px;
+    }
+
+    tbody tr {
+        transition: 0.2s ease;
+    }
+
+    tbody tr:hover {
+        background: #f8fbff;
+    }
+
+    tbody tr:last-child td {
+        border-bottom: none;
+    }
+
+    td:nth-child(2) {
+        font-weight: 700;
+        color: #dc2626;
+    }
+
+    /* ================= EMPTY STATE ================= */
+
+    .empty {
+        text-align: center;
+        color: #94a3b8;
+        padding: 35px !important;
+        font-size: 14px;
+    }
+
+    /* ================= NAVIGATION ================= */
+
+    .navigation {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+    }
+
+    .nav-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        padding: 12px 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 700;
+        transition: 0.25s ease;
+    }
+
+    .home-button {
+        background: #0f172a;
+        color: white;
+    }
+
+    .home-button:hover {
+        background: #1e293b;
+        transform: translateY(-2px);
+    }
+
+    .analysis-button {
+        background: #e0f2fe;
+        color: #0369a1;
+        border: 1px solid #bae6fd;
+    }
+
+    .analysis-button:hover {
+        background: #bae6fd;
+        transform: translateY(-2px);
+    }
+
+    /* ================= FOOTER ================= */
+
+    .footer {
+        margin-top: 55px;
+        background: #0f172a;
+        color: #94a3b8;
+        text-align: center;
+        padding: 25px 20px;
+    }
+
+    .footer strong {
+        color: #38bdf8;
+    }
+
+    .footer p {
+        font-size: 13px;
+        margin-top: 6px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 700px) {
+
+        .header {
+            padding: 16px 5%;
+        }
+
+        .logo {
+            font-size: 20px;
+        }
+
+        .header-status {
+            font-size: 11px;
+        }
+
+        .container {
+            width: 94%;
+            margin: 30px auto;
+        }
+
+        h1 {
+            font-size: 30px;
+        }
+
+        .card {
+            padding: 20px;
+            border-radius: 16px;
+        }
+
+        .card-header h2 {
+            font-size: 19px;
+        }
+
+        .navigation {
+            flex-direction: column;
+        }
+
+        .nav-button {
+            width: 100%;
+        }
+    }
+
+</style>
+
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+    <div class="logo">
+        Fin<span>Wise</span>
+    </div>
+
+    <div class="header-status">
+        <span class="status-dot"></span>
+        Personal Finance System
+    </div>
+
+</header>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<div class="container">
+
+
+<!-- PAGE HEADING -->
+
+<div class="page-heading">
+
+    <div class="icon">
+        💳
+    </div>
+
+    <h1>Expense Tracker</h1>
+
+    <p>
+        Record and monitor your daily expenses securely.
+    </p>
+
+</div>
+
+
+<!-- ================= ADD EXPENSE ================= -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            +
+        </div>
+
+        <div>
+            <h2>Add Expense</h2>
+
+            <p>
+                Enter your expense details below
+            </p>
+        </div>
+
+    </div>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ form.as_p }}
+
+        <button type="submit">
+            + Add Expense
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- ================= EXPENSE RECORDS ================= -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon">
+            ≡
+        </div>
+
+        <div>
+            <h2>My Expense Records</h2>
+
+            <p>
+                Your saved expense transactions
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Category</th>
+                    <th>Amount</th>
+                    <th>Date</th>
+                    <th>Description</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for expense in expenses %}
+
+                <tr>
+
+                    <td>
+                        {{ expense.category }}
+                    </td>
+
+                    <td>
+                        ₹{{ expense.amount }}
+                    </td>
+
+                    <td>
+                        {{ expense.date }}
+                    </td>
+
+                    <td>
+                        {{ expense.description|default:"-" }}
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="4" class="empty">
+                        No expense records yet.
+                        Add your first expense above.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- ================= LOAN INFORMATION ================= -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon loan-icon">
+            💰
+        </div>
+
+        <div>
+
+            <h2>Loan Information</h2>
+
+            <p>
+                Add your loan details for financial analysis
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {{ loan_form.as_p }}
+
+        <button type="submit" class="loan-button">
+            + Save Loan Information
+        </button>
+
+    </form>
+
+</div>
+
+
+<!-- ================= SAVED LOAN RECORDS ================= -->
+
+<div class="card">
+
+    <div class="card-header">
+
+        <div class="card-icon loan-icon">
+            🏦
+        </div>
+
+        <div>
+
+            <h2>My Loan Information</h2>
+
+            <p>
+                Your saved loan details
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="table-wrapper">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>Loan Amount</th>
+                    <th>Monthly EMI</th>
+                    <th>Loan Status</th>
+                    <th>Date</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                {% for loan in loans %}
+
+                <tr>
+
+                    <td>
+                        ₹{{ loan.loan_amount }}
+                    </td>
+
+                    <td>
+                        ₹{{ loan.monthly_emi }}
+                    </td>
+
+                    <td>
+                        {{ loan.status }}
+                    </td>
+
+                    <td>
+                        {{ loan.date }}
+                    </td>
+
+                </tr>
+
+                {% empty %}
+
+                <tr>
+
+                    <td colspan="4" class="empty">
+                        No loan information added yet.
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+<!-- ================= NAVIGATION ================= -->
+
+<div class="navigation">
+
+    <a href="{% url 'home' %}"
+       class="nav-button home-button">
+
+        ← Back to Home
+
+    </a>
+
+
+    <a href="{% url 'financial_analysis' %}"
+       class="nav-button analysis-button">
+
+        📊 Continue to Financial Analysis →
+
+    </a>
+
+    <a href="{% url 'loan_information' %}" class="nav-button loan-button">
+    💳 Loan Information →
+    </a>
+
+</div>
+
+
+</div>
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    <div>
+        <strong>FinWise</strong> — AI-Based Personal Finance Health Coach
+    </div>
+
+    <p>
+        Track your finances • Analyze your spending • Improve your financial health
+    </p>
+
+</footer>
+
+
+</body>
+
+</html>
+

@@ -1,416 +1,704 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <title>Registration - Personal Finance</title>
+<title>Registration | FinWise</title>
 
-    <style>
+<style>
 
-        * {
-            box-sizing: border-box;
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+
+        min-height: 100vh;
+
+        background:
+            radial-gradient(circle at top left,
+                rgba(59,130,246,0.20),
+                transparent 35%),
+            radial-gradient(circle at bottom right,
+                rgba(14,165,233,0.18),
+                transparent 35%),
+            linear-gradient(135deg, #eef5ff, #f8fafc);
+
+        color: #1e293b;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ================= HEADER ================= */
+
+    .top-header {
+        background: linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a,
+            #0369a1
+        );
+
+        color: white;
+
+        padding: 18px 6%;
+
+        display: flex;
+
+        justify-content: space-between;
+
+        align-items: center;
+
+        box-shadow:
+            0 5px 25px rgba(15,23,42,0.18);
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .brand-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 12px;
+
+        background: rgba(255,255,255,0.14);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 21px;
+
+        border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .brand h2 {
+        color: white;
+
+        font-size: 22px;
+
+        letter-spacing: 0.5px;
+    }
+
+    .brand span {
+        display: block;
+
+        font-size: 10px;
+
+        color: #cbd5e1;
+
+        margin-top: 2px;
+
+        letter-spacing: 1px;
+    }
+
+    .header-text {
+        color: #dbeafe;
+
+        font-size: 13px;
+    }
+
+    /* ================= MAIN ================= */
+
+    .main {
+        flex: 1;
+
+        display: flex;
+
+        justify-content: center;
+
+        align-items: center;
+
+        padding: 40px 20px;
+    }
+
+    .registration-container {
+        width: 100%;
+
+        max-width: 470px;
+    }
+
+    /* ================= CARD ================= */
+
+    .registration-card {
+        background: rgba(255,255,255,0.96);
+
+        padding: 36px;
+
+        border-radius: 20px;
+
+        border: 1px solid #e2e8f0;
+
+        box-shadow:
+            0 20px 45px rgba(15,23,42,0.10),
+            0 4px 10px rgba(15,23,42,0.04);
+    }
+
+    .register-icon {
+        width: 62px;
+        height: 62px;
+
+        margin: 0 auto 18px;
+
+        border-radius: 18px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #dbeafe,
+                #e0f2fe
+            );
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        font-size: 28px;
+
+        color: #2563eb;
+    }
+
+    .title {
+        text-align: center;
+    }
+
+    .title h1 {
+        font-size: 27px;
+
+        color: #0f172a;
+
+        margin-bottom: 8px;
+    }
+
+    .title p {
+        color: #64748b;
+
+        font-size: 14px;
+
+        line-height: 1.6;
+
+        margin-bottom: 27px;
+    }
+
+    /* ================= FORM ================= */
+
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    label {
+        display: block;
+
+        margin-bottom: 7px;
+
+        color: #334155;
+
+        font-size: 13px;
+
+        font-weight: 600;
+    }
+
+    .input-wrapper {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+
+        left: 14px;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        color: #64748b;
+
+        font-size: 15px;
+    }
+
+    input {
+        width: 100%;
+
+        padding: 13px 14px 13px 42px;
+
+        border: 1px solid #cbd5e1;
+
+        border-radius: 10px;
+
+        background: #f8fafc;
+
+        color: #1e293b;
+
+        font-size: 14px;
+
+        outline: none;
+
+        transition: 0.25s ease;
+    }
+
+    input::placeholder {
+        color: #94a3b8;
+    }
+
+    input:focus {
+        background: white;
+
+        border-color: #3b82f6;
+
+        box-shadow:
+            0 0 0 4px rgba(59,130,246,0.10);
+    }
+
+    /* ================= PASSWORD NOTE ================= */
+
+    .password-note {
+        margin-top: 5px;
+
+        color: #94a3b8;
+
+        font-size: 11px;
+    }
+
+    /* ================= BUTTON ================= */
+
+    button {
+        width: 100%;
+
+        padding: 14px;
+
+        margin-top: 5px;
+
+        background:
+            linear-gradient(
+                135deg,
+                #2563eb,
+                #0284c7
+            );
+
+        color: white;
+
+        border: none;
+
+        border-radius: 10px;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        cursor: pointer;
+
+        letter-spacing: 0.2px;
+
+        box-shadow:
+            0 8px 20px rgba(37,99,235,0.22);
+
+        transition: 0.25s ease;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 12px 25px rgba(37,99,235,0.30);
+    }
+
+    /* ================= MESSAGES ================= */
+
+    .message {
+        text-align: center;
+
+        margin-top: 18px;
+
+        padding: 11px 13px;
+
+        border-radius: 9px;
+
+        font-size: 13px;
+    }
+
+    .error {
+        color: #dc2626;
+
+        background: #fef2f2;
+
+        border: 1px solid #fecaca;
+    }
+
+    .success {
+        color: #059669;
+
+        background: #ecfdf5;
+
+        border: 1px solid #a7f3d0;
+    }
+
+    /* ================= LOGIN ================= */
+
+    .login-link {
+        text-align: center;
+
+        margin-top: 24px;
+
+        padding-top: 21px;
+
+        border-top: 1px solid #e2e8f0;
+
+        color: #64748b;
+
+        font-size: 13px;
+    }
+
+    .login-link a {
+        color: #2563eb;
+
+        font-weight: 700;
+
+        text-decoration: none;
+
+        margin-left: 4px;
+    }
+
+    .login-link a:hover {
+        color: #1d4ed8;
+
+        text-decoration: underline;
+    }
+
+    /* ================= SECURITY ================= */
+
+    .security {
+        text-align: center;
+
+        margin-top: 17px;
+
+        color: #94a3b8;
+
+        font-size: 11px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        background: #0f172a;
+
+        color: #94a3b8;
+
+        text-align: center;
+
+        padding: 20px 15px;
+
+        font-size: 12px;
+    }
+
+    footer strong {
+        color: #e2e8f0;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 600px) {
+
+        .top-header {
+            padding: 16px 5%;
         }
 
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #f4f7fb;
+        .header-text {
+            display: none;
         }
 
-        .container {
-            width: 450px;
-            margin: 40px auto;
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.12);
+        .main {
+            padding: 30px 15px;
         }
 
-        h2 {
-            text-align: center;
-            color: #243447;
-            margin-bottom: 8px;
+        .registration-card {
+            padding: 28px 22px;
         }
 
-        .subtitle {
-            text-align: center;
-            color: #777;
-            margin-bottom: 25px;
+        .title h1 {
+            font-size: 24px;
         }
 
-        .form-group {
-            margin-bottom: 16px;
-        }
+    }
 
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: bold;
-            color: #333;
-        }
+</style>
 
-        input,
-        select {
-            width: 100%;
-            padding: 11px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-
-        input:focus,
-        select:focus {
-            outline: none;
-            border-color: #243447;
-        }
-
-        button {
-            width: 100%;
-            padding: 13px;
-            margin-top: 10px;
-            background: #243447;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #1b2836;
-        }
-
-        .message {
-            text-align: center;
-            margin-top: 15px;
-        }
-
-        .error {
-            color: red;
-        }
-
-        .success {
-            color: green;
-        }
-
-        .login-link {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .login-link a {
-            color: #243447;
-            font-weight: bold;
-            text-decoration: none;
-        }
-
-    </style>
 
 </head>
 
-
 <body>
 
+<!-- ================= HEADER ================= -->
 
-<div class="container">
+<header class="top-header">
 
-    <h2>Create Account</h2>
 
-    <p class="subtitle">
-        Personal Finance Management System
-    </p>
+<div class="brand">
 
+    <div class="brand-icon">
+        💰
+    </div>
 
-    <form method="POST">
+    <div>
 
-        {% csrf_token %}
+        <h2>FinWise</h2>
 
-
-        <!-- 1. NAME -->
-
-        <div class="form-group">
-
-            <label for="name">
-                Full Name
-            </label>
-
-            <input
-                type="text"
-                id="name"
-                name="name"
-                placeholder="Enter your full name"
-                required
-            >
-
-        </div>
-
-
-        <!-- 2. AGE -->
-
-        <div class="form-group">
-
-            <label for="age">
-                Age
-            </label>
-
-            <input
-                type="number"
-                id="age"
-                name="age"
-                placeholder="Enter your age"
-                min="18"
-                max="100"
-                required
-            >
-
-        </div>
-
-
-        <!-- 3. GENDER -->
-
-        <div class="form-group">
-
-            <label for="gender">
-                Gender
-            </label>
-
-            <select
-                id="gender"
-                name="gender"
-                required
-            >
-
-                <option value="">
-                    Select Gender
-                </option>
-
-                <option value="Male">
-                    Male
-                </option>
-
-                <option value="Female">
-                    Female
-                </option>
-
-                <option value="Other">
-                    Other
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- 4. EDUCATION -->
-
-        <div class="form-group">
-
-            <label for="education_level">
-                Education
-            </label>
-
-            <select
-                id="education_level"
-                name="education_level"
-                required
-            >
-
-                <option value="">
-                    Select Education
-                </option>
-
-                <option value="High School">
-                    High School
-                </option>
-
-                <option value="Bachelor's">
-                    Bachelor's
-                </option>
-
-                <option value="Master's">
-                    Master's
-                </option>
-
-                <option value="PhD">
-                    PhD
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- 5. EMPLOYMENT -->
-
-        <div class="form-group">
-
-            <label for="employment_status">
-                Employment
-            </label>
-
-            <select
-                id="employment_status"
-                name="employment_status"
-                required
-            >
-
-                <option value="">
-                    Select Employment Status
-                </option>
-
-                <option value="Employed">
-                    Employed
-                </option>
-
-                <option value="Self-employed">
-                    Self-employed
-                </option>
-
-                <option value="Unemployed">
-                    Unemployed
-                </option>
-
-                <option value="Student">
-                    Student
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <!-- 6. USERNAME -->
-
-        <div class="form-group">
-
-            <label for="username">
-                Username
-            </label>
-
-            <input
-                type="text"
-                id="username"
-                name="username"
-                placeholder="Enter username"
-                minlength="6"
-                required
-            >
-
-        </div>
-
-
-        <!-- 7. EMAIL -->
-
-        <div class="form-group">
-
-            <label for="email">
-                Email
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter email address"
-                required
-            >
-
-        </div>
-
-
-        <!-- 8. PHONE -->
-
-        <div class="form-group">
-
-            <label for="phone">
-                Phone
-            </label>
-
-            <input
-                type="tel"
-                id="phone"
-                name="phone"
-                placeholder="Enter 10-digit phone number"
-                pattern="[0-9]{10}"
-                maxlength="10"
-                required
-            >
-
-        </div>
-
-
-        <!-- 9. PASSWORD -->
-
-        <div class="form-group">
-
-            <label for="password">
-                Password
-            </label>
-
-            <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter password"
-                minlength="8"
-                required
-            >
-
-        </div>
-
-
-        <!-- SUBMIT -->
-
-        <button type="submit">
-            Register
-        </button>
-
-
-    </form>
-
-
-    <!-- ERROR MESSAGE -->
-
-    {% if error %}
-
-        <div class="message error">
-            {{ error }}
-        </div>
-
-    {% endif %}
-
-
-    <!-- SUCCESS MESSAGE -->
-
-    {% if success %}
-
-        <div class="message success">
-            {{ success }}
-        </div>
-
-    {% endif %}
-
-
-    <!-- LOGIN LINK -->
-
-    <div class="login-link">
-
-        Already have an account?
-
-        <a href="{% url 'login' %}">
-            Login
-        </a>
+        <span>
+            PERSONAL FINANCE HEALTH COACH
+        </span>
 
     </div>
 
-
 </div>
 
+
+<div class="header-text">
+    Start Your Financial Journey
+</div>
+
+
+</header>
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+<div class="registration-container">
+
+    <div class="registration-card">
+
+
+        <!-- ICON -->
+
+        <div class="register-icon">
+            👤
+        </div>
+
+
+        <!-- TITLE -->
+
+        <div class="title">
+
+            <h1>
+                Create Your Account
+            </h1>
+
+            <p>
+                Join FinWise and start managing
+                your personal finances smarter.
+            </p>
+
+        </div>
+
+
+        <!-- ================= FORM ================= -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- FULL NAME -->
+
+            <div class="form-group">
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        👤
+                    </span>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- USERNAME -->
+
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        @
+                    </span>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter username"
+                        minlength="6"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        ✉
+                    </span>
+
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        placeholder="Enter email address"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter password"
+                        minlength="8"
+                        required
+                    >
+
+                </div>
+
+                <div class="password-note">
+                    Password must contain at least 8 characters.
+                </div>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button type="submit">
+                Create FinWise Account
+            </button>
+
+
+        </form>
+
+
+        <!-- ================= ERROR ================= -->
+
+        {% if error %}
+
+            <div class="message error">
+                {{ error }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- ================= SUCCESS ================= -->
+
+        {% if success %}
+
+            <div class="message success">
+                {{ success }}
+            </div>
+
+        {% endif %}
+
+
+        <!-- ================= LOGIN ================= -->
+
+        <div class="login-link">
+
+            Already have an account?
+
+            <a href="{% url 'login' %}">
+                Login
+            </a>
+
+        </div>
+
+
+        <div class="security">
+            🔒 Your account information is securely managed.
+        </div>
+
+
+    </div>
+
+</div>
+```
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+
+<strong>FinWise</strong> —
+AI-Based Personal Finance Health Coach
+
+<br><br>
+
+Track • Analyze • Improve Your Financial Health
+
+
+</footer>
 
 </body>
 

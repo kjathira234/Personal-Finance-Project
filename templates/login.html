@@ -1,89 +1,591 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en">
+
 <head>
-    <title>Login</title>
 
-    <style>
-        body {
-            font-family: Arial;
-            background: #f4f7fb;
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Login | FinWise</title>
+
+<style>
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: "Segoe UI", Arial, sans-serif;
+        min-height: 100vh;
+
+        background:
+            radial-gradient(circle at top left,
+                rgba(59, 130, 246, 0.20),
+                transparent 35%),
+            radial-gradient(circle at bottom right,
+                rgba(14, 165, 233, 0.18),
+                transparent 35%),
+            linear-gradient(135deg, #eef5ff, #f8fafc);
+
+        color: #1e293b;
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* ================= HEADER ================= */
+
+    .top-header {
+        background: linear-gradient(
+            135deg,
+            #0f172a,
+            #1e3a8a,
+            #0369a1
+        );
+
+        color: white;
+
+        padding: 18px 6%;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        box-shadow: 0 5px 25px rgba(15, 23, 42, 0.18);
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .brand-icon {
+        width: 42px;
+        height: 42px;
+
+        border-radius: 12px;
+
+        background: rgba(255,255,255,0.14);
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 21px;
+
+        border: 1px solid rgba(255,255,255,0.18);
+    }
+
+    .brand h2 {
+        color: white;
+        font-size: 22px;
+        letter-spacing: 0.5px;
+    }
+
+    .brand span {
+        display: block;
+
+        font-size: 10px;
+
+        color: #cbd5e1;
+
+        margin-top: 2px;
+
+        letter-spacing: 1px;
+    }
+
+    .header-text {
+        color: #dbeafe;
+        font-size: 13px;
+    }
+
+    /* ================= MAIN ================= */
+
+    .main {
+        flex: 1;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 45px 20px;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 430px;
+    }
+
+    /* ================= LOGIN CARD ================= */
+
+    .login-card {
+        background: rgba(255,255,255,0.96);
+
+        padding: 38px;
+
+        border-radius: 20px;
+
+        border: 1px solid #e2e8f0;
+
+        box-shadow:
+            0 20px 45px rgba(15,23,42,0.10),
+            0 4px 10px rgba(15,23,42,0.04);
+    }
+
+    .login-icon {
+        width: 62px;
+        height: 62px;
+
+        margin: 0 auto 18px;
+
+        border-radius: 18px;
+
+        background: linear-gradient(
+            135deg,
+            #dbeafe,
+            #e0f2fe
+        );
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: 28px;
+
+        color: #2563eb;
+    }
+
+    .login-title {
+        text-align: center;
+    }
+
+    .login-title h1 {
+        font-size: 27px;
+        color: #0f172a;
+        margin-bottom: 8px;
+    }
+
+    .login-title p {
+        color: #64748b;
+        font-size: 14px;
+        line-height: 1.6;
+        margin-bottom: 28px;
+    }
+
+    /* ================= FORM ================= */
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        display: block;
+
+        margin-bottom: 8px;
+
+        color: #334155;
+
+        font-size: 13px;
+
+        font-weight: 600;
+    }
+
+    .input-wrapper {
+        position: relative;
+    }
+
+    .input-icon {
+        position: absolute;
+
+        left: 14px;
+        top: 50%;
+
+        transform: translateY(-50%);
+
+        color: #64748b;
+
+        font-size: 16px;
+    }
+
+    input {
+        width: 100%;
+
+        padding: 13px 14px 13px 43px;
+
+        border: 1px solid #cbd5e1;
+
+        border-radius: 10px;
+
+        background: #f8fafc;
+
+        color: #1e293b;
+
+        font-size: 14px;
+
+        outline: none;
+
+        transition: 0.25s ease;
+    }
+
+    input::placeholder {
+        color: #94a3b8;
+    }
+
+    input:focus {
+        background: white;
+
+        border-color: #3b82f6;
+
+        box-shadow:
+            0 0 0 4px rgba(59,130,246,0.10);
+    }
+
+    /* ================= ERROR ================= */
+
+    .error-message {
+        background: #fef2f2;
+
+        color: #dc2626;
+
+        border: 1px solid #fecaca;
+
+        padding: 11px 13px;
+
+        border-radius: 9px;
+
+        margin-bottom: 18px;
+
+        font-size: 13px;
+
+        text-align: center;
+    }
+
+    /* ================= BUTTON ================= */
+
+    button {
+        width: 100%;
+
+        padding: 14px;
+
+        margin-top: 5px;
+
+        background: linear-gradient(
+            135deg,
+            #2563eb,
+            #0284c7
+        );
+
+        color: white;
+
+        border: none;
+
+        border-radius: 10px;
+
+        cursor: pointer;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        letter-spacing: 0.2px;
+
+        box-shadow:
+            0 8px 20px rgba(37,99,235,0.22);
+
+        transition: 0.25s ease;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+
+        box-shadow:
+            0 12px 25px rgba(37,99,235,0.30);
+    }
+
+    /* ================= REGISTER ================= */
+
+    .register-section {
+        text-align: center;
+
+        margin-top: 25px;
+
+        padding-top: 22px;
+
+        border-top: 1px solid #e2e8f0;
+
+        color: #64748b;
+
+        font-size: 13px;
+    }
+
+    .register-section a {
+        color: #2563eb;
+
+        text-decoration: none;
+
+        font-weight: 700;
+
+        margin-left: 4px;
+    }
+
+    .register-section a:hover {
+        color: #1d4ed8;
+
+        text-decoration: underline;
+    }
+
+    /* ================= SECURITY TEXT ================= */
+
+    .security {
+        text-align: center;
+
+        margin-top: 18px;
+
+        color: #94a3b8;
+
+        font-size: 11px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+        background: #0f172a;
+
+        color: #94a3b8;
+
+        text-align: center;
+
+        padding: 20px 15px;
+
+        font-size: 12px;
+    }
+
+    footer strong {
+        color: #e2e8f0;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 600px) {
+
+        .top-header {
+            padding: 16px 5%;
         }
 
-        .box {
-            width: 400px;
-            margin: 80px auto;
-            padding: 30px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px #ccc;
+        .header-text {
+            display: none;
         }
 
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            box-sizing: border-box;
+        .main {
+            padding: 30px 16px;
         }
 
-        button {
-            width: 100%;
-            padding: 12px;
-            background: #243447;
-            color: white;
-            border: none;
-            cursor: pointer;
+        .login-card {
+            padding: 28px 22px;
         }
 
-        button:hover {
-            background: #1abc9c;
+        .login-title h1 {
+            font-size: 24px;
         }
 
-        a {
-            text-decoration: none;
-        }
-    </style>
+    }
+
+</style>
+
+
 </head>
 
 <body>
 
-<div class="box">
+<!-- ================= HEADER ================= -->
 
-    <h2>Login</h2>
+<header class="top-header">
 
-    <form method="POST">
-        {% csrf_token %}
 
-        <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            required
-        >
+<div class="brand">
 
-        <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            required
-        >
+    <div class="brand-icon">
+        💰
+    </div>
 
-        <button type="submit">
-            Login
-        </button>
-    </form>
+    <div>
 
-    {% if error %}
-        <p style="color:red;">{{ error }}</p>
-    {% endif %}
+        <h2>FinWise</h2>
 
-    <p>
-        Don't have an account?
-        <a href="{% url 'registration' %}">
-            Register
-        </a>
-    </p>
+        <span>
+            PERSONAL FINANCE HEALTH COACH
+        </span>
+
+    </div>
 
 </div>
 
+
+<div class="header-text">
+    Secure Financial Management
+</div>
+
+
+</header>
+
+<!-- ================= MAIN ================= -->
+
+<main class="main">
+
+
+<div class="login-container">
+
+    <div class="login-card">
+
+
+        <!-- Login Icon -->
+
+        <div class="login-icon">
+            🔐
+        </div>
+
+
+        <!-- Title -->
+
+        <div class="login-title">
+
+            <h1>Welcome Back</h1>
+
+            <p>
+                Login to access your personal
+                financial health dashboard.
+            </p>
+
+        </div>
+
+
+        <!-- Login Form -->
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+
+            <!-- Username -->
+
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        👤
+                    </span>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Password -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Error -->
+
+            {% if error %}
+
+                <div class="error-message">
+                    {{ error }}
+                </div>
+
+            {% endif %}
+
+
+            <!-- Login Button -->
+
+            <button type="submit">
+                Login to FinWise
+            </button>
+
+        </form>
+
+
+        <!-- Register -->
+
+        <div class="register-section">
+
+            Don't have an account?
+
+            <a href="{% url 'registration' %}">
+                Create Account
+            </a>
+
+        </div>
+
+
+        <div class="security">
+            🔒 Your financial information is securely managed.
+        </div>
+
+
+    </div>
+
+</div>
+
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+
+<strong>FinWise</strong> —
+AI-Based Personal Finance Health Coach
+
+<br><br>
+
+Track • Analyze • Improve Your Financial Health
+
+
+</footer>
+
 </body>
+
 </html>

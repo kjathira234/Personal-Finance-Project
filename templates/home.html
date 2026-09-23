@@ -1,502 +1,826 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
 
-    <title>Personal Finance Management System</title>
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
 
-    <style>
+<title>FinWise | AI-Based Personal Finance Health Coach</title>
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f5f7fb;
-            color: #243447;
-        }
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
 
+    html {
+        scroll-behavior: smooth;
+    }
 
-        /* =====================================
-           HEADER
-        ===================================== */
-
-        header {
-            background: #243447;
-            color: white;
-            padding: 18px 60px;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .logo span {
-            color: #61dafb;
-        }
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f5f8fc;
+        color: #1f2937;
+        line-height: 1.6;
+    }
 
 
-        nav {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-        }
+    /* =========================================
+       HEADER
+    ========================================= */
 
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 15px;
-        }
+    header {
+        background: rgba(15, 27, 42, 0.97);
+        color: white;
+        padding: 17px 7%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0.12);
+    }
 
-        nav a:hover {
-            color: #61dafb;
-        }
+    .logo {
+        font-size: 27px;
+        font-weight: 800;
+        letter-spacing: 0.5px;
+    }
+
+    .logo span {
+        color: #39d5ff;
+    }
+
+    .logo-subtitle {
+        font-size: 9px;
+        color: #9fb0c0;
+        display: block;
+        letter-spacing: 1.2px;
+        margin-top: -4px;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+    }
+
+    nav a {
+        color: #e7edf4;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        transition: 0.25s;
+    }
+
+    nav a:hover {
+        color: #39d5ff;
+    }
+
+    .login-btn {
+        border: 1px solid #39d5ff;
+        color: #39d5ff !important;
+        padding: 9px 19px;
+        border-radius: 7px;
+    }
+
+    .login-btn:hover {
+        background: #39d5ff;
+        color: #102033 !important;
+    }
+
+    .register-btn {
+        background: #39d5ff;
+        color: #102033 !important;
+        padding: 10px 20px;
+        border-radius: 7px;
+        font-weight: 700;
+    }
+
+    .register-btn:hover {
+        background: #ffffff;
+    }
 
 
-        .login-btn {
-            background: #61dafb;
-            color: #243447 !important;
+    /* =========================================
+       HERO
+    ========================================= */
 
-            padding: 9px 18px;
-            border-radius: 6px;
+    .hero {
+        min-height: 650px;
+        padding: 80px 8%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 70px;
+        background:
+            radial-gradient(circle at 85% 25%, #dff7ff 0, transparent 28%),
+            linear-gradient(135deg, #eef8ff, #ffffff 55%, #f4f8fc);
+        overflow: hidden;
+    }
 
-            font-weight: bold;
-        }
+    .hero-content {
+        max-width: 650px;
+    }
+
+    .badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #ffffff;
+        border: 1px solid #dce8f2;
+        color: #2479c8;
+        padding: 8px 15px;
+        border-radius: 30px;
+        font-size: 12px;
+        font-weight: 700;
+        margin-bottom: 23px;
+        box-shadow: 0 5px 18px rgba(31, 70, 100, 0.06);
+    }
+
+    .hero-content h1 {
+        font-size: 54px;
+        line-height: 1.1;
+        color: #172b3f;
+        margin-bottom: 22px;
+        letter-spacing: -1.5px;
+    }
+
+    .hero-content h1 span {
+        color: #1976d2;
+    }
+
+    .hero-content p {
+        color: #627384;
+        font-size: 17px;
+        line-height: 1.85;
+        margin-bottom: 30px;
+        max-width: 620px;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+    }
+
+    .primary-btn {
+        display: inline-block;
+        background: #172b3f;
+        color: white;
+        padding: 14px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 8px 22px rgba(23, 43, 63, 0.18);
+        transition: 0.25s;
+    }
+
+    .primary-btn:hover {
+        transform: translateY(-2px);
+        background: #0e1d2b;
+    }
+
+    .secondary-btn {
+        display: inline-block;
+        background: white;
+        color: #172b3f;
+        border: 1px solid #cad7e3;
+        padding: 14px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 700;
+        transition: 0.25s;
+    }
+
+    .secondary-btn:hover {
+        border-color: #1976d2;
+        color: #1976d2;
+    }
 
 
-        .register-btn {
-            background: white;
-            color: #243447 !important;
+    /* =========================================
+       DIGITAL DASHBOARD PREVIEW
+    ========================================= */
 
-            padding: 9px 18px;
-            border-radius: 6px;
+    .digital-card {
+        width: 420px;
+        min-width: 420px;
+        background: #14283b;
+        border-radius: 22px;
+        padding: 23px;
+        box-shadow: 0 25px 60px rgba(20, 40, 59, 0.25);
+        color: white;
+        position: relative;
+    }
 
-            font-weight: bold;
-        }
+    .digital-card::before {
+        content: "";
+        position: absolute;
+        width: 130px;
+        height: 130px;
+        background: rgba(57, 213, 255, 0.12);
+        border-radius: 50%;
+        top: -45px;
+        right: -35px;
+    }
+
+    .card-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 22px;
+    }
+
+    .card-title {
+        font-size: 12px;
+        color: #9eb1c2;
+        letter-spacing: 1px;
+    }
+
+    .ai-pill {
+        background: #39d5ff;
+        color: #102033;
+        padding: 5px 10px;
+        border-radius: 20px;
+        font-size: 10px;
+        font-weight: 800;
+    }
+
+    .health-preview {
+        background: #203d55;
+        padding: 20px;
+        border-radius: 15px;
+        margin-bottom: 14px;
+        border: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .health-preview small {
+        color: #9fb2c3;
+    }
+
+    .health-preview h2 {
+        color: #39d5ff;
+        font-size: 30px;
+        margin: 5px 0;
+    }
+
+    .health-preview .status-line {
+        font-size: 12px;
+        color: #b7c8d7;
+    }
+
+    .data-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+
+    .data-box {
+        background: #203d55;
+        border-radius: 13px;
+        padding: 16px;
+    }
+
+    .data-box small {
+        color: #9fb2c3;
+        font-size: 11px;
+    }
+
+    .data-box strong {
+        display: block;
+        margin-top: 5px;
+        font-size: 19px;
+    }
+
+    .analysis-bar {
+        margin-top: 18px;
+    }
+
+    .analysis-bar small {
+        color: #9fb2c3;
+        font-size: 11px;
+    }
+
+    .bar {
+        height: 7px;
+        background: #3a5267;
+        border-radius: 10px;
+        margin-top: 8px;
+        overflow: hidden;
+    }
+
+    .bar span {
+        display: block;
+        width: 74%;
+        height: 100%;
+        background: #39d5ff;
+        border-radius: 10px;
+    }
 
 
-        /* =====================================
-           HERO SECTION
-        ===================================== */
+    /* =========================================
+       SECTION COMMON
+    ========================================= */
+
+    .section {
+        padding: 80px 8%;
+    }
+
+    .section-heading {
+        text-align: center;
+        max-width: 750px;
+        margin: 0 auto 48px;
+    }
+
+    .section-label {
+        color: #1976d2;
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        margin-bottom: 8px;
+    }
+
+    .section-heading h2 {
+        font-size: 35px;
+        color: #172b3f;
+        margin-bottom: 12px;
+    }
+
+    .section-heading p {
+        color: #718096;
+        line-height: 1.8;
+    }
+
+
+    /* =========================================
+       WORKFLOW
+    ========================================= */
+
+    .workflow-section {
+        background: #edf4fa;
+    }
+
+    .workflow {
+        max-width: 1150px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+    }
+
+    .workflow-card {
+        background: white;
+        padding: 27px 20px;
+        border-radius: 15px;
+        border: 1px solid #e0e8ef;
+        box-shadow: 0 7px 25px rgba(35, 65, 90, 0.06);
+        transition: 0.25s;
+    }
+
+    .workflow-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 14px 30px rgba(35, 65, 90, 0.1);
+    }
+
+    .workflow-number {
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 10px;
+        background: #172b3f;
+        color: white;
+        font-weight: 800;
+        margin-bottom: 17px;
+    }
+
+    .workflow-card h3 {
+        color: #20364b;
+        font-size: 17px;
+        margin-bottom: 8px;
+    }
+
+    .workflow-card p {
+        color: #758292;
+        font-size: 13px;
+        line-height: 1.65;
+    }
+
+
+    /* =========================================
+       FEATURES
+    ========================================= */
+
+    .features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        max-width: 1150px;
+        margin: auto;
+    }
+
+    .feature-card {
+        background: white;
+        padding: 30px;
+        border-radius: 15px;
+        border: 1px solid #e1e9f0;
+        box-shadow: 0 7px 24px rgba(35, 65, 90, 0.05);
+        transition: 0.25s;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+        border-color: #b8d8ed;
+    }
+
+    .feature-icon {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #edf7ff;
+        border-radius: 13px;
+        font-size: 25px;
+        margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+        color: #20364b;
+        margin-bottom: 9px;
+        font-size: 18px;
+    }
+
+    .feature-card p {
+        color: #758292;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================================
+       AI SECTION
+    ========================================= */
+
+    .ai-section {
+        background: #14283b;
+        color: white;
+        padding: 85px 8%;
+        text-align: center;
+    }
+
+    .ai-section .section-label {
+        color: #39d5ff;
+    }
+
+    .ai-section h2 {
+        font-size: 36px;
+        margin-bottom: 14px;
+    }
+
+    .ai-section > p {
+        max-width: 720px;
+        margin: auto;
+        color: #b9c7d3;
+        line-height: 1.8;
+    }
+
+    .ai-flow {
+        max-width: 1050px;
+        margin: 42px auto 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .ai-step {
+        background: #203d55;
+        border: 1px solid #31536d;
+        padding: 14px 18px;
+        border-radius: 9px;
+        font-size: 13px;
+        font-weight: 700;
+    }
+
+    .ai-arrow {
+        color: #39d5ff;
+        font-size: 20px;
+    }
+
+
+    /* =========================================
+       HEALTH OUTCOMES
+    ========================================= */
+
+    .outcomes {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 22px;
+        max-width: 1050px;
+        margin: auto;
+    }
+
+    .outcome-card {
+        background: white;
+        border: 1px solid #e0e8ef;
+        border-radius: 15px;
+        padding: 30px;
+        text-align: center;
+        box-shadow: 0 7px 24px rgba(35, 65, 90, 0.05);
+    }
+
+    .outcome-icon {
+        font-size: 36px;
+        margin-bottom: 13px;
+    }
+
+    .outcome-card h3 {
+        color: #20364b;
+        margin-bottom: 10px;
+    }
+
+    .outcome-card p {
+        color: #758292;
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================================
+       REPORT SECTION
+    ========================================= */
+
+    .report-section {
+        background: #edf4fa;
+    }
+
+    .report-box {
+        max-width: 1050px;
+        margin: auto;
+        background: white;
+        border-radius: 18px;
+        padding: 35px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 25px;
+        border: 1px solid #dce6ee;
+        box-shadow: 0 10px 30px rgba(35, 65, 90, 0.07);
+    }
+
+    .report-item {
+        display: flex;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .report-icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #edf7ff;
+        border-radius: 10px;
+        font-size: 20px;
+    }
+
+    .report-item h3 {
+        font-size: 16px;
+        color: #20364b;
+        margin-bottom: 5px;
+    }
+
+    .report-item p {
+        font-size: 13px;
+        color: #758292;
+        line-height: 1.6;
+    }
+
+
+    /* =========================================
+       CTA
+    ========================================= */
+
+    .cta {
+        background:
+            radial-gradient(circle at 20% 30%, rgba(57,213,255,0.16), transparent 25%),
+            linear-gradient(135deg, #1976d2, #14283b);
+        color: white;
+        text-align: center;
+        padding: 80px 20px;
+    }
+
+    .cta h2 {
+        font-size: 36px;
+        margin-bottom: 12px;
+    }
+
+    .cta p {
+        color: #d7e7f3;
+        max-width: 650px;
+        margin: 0 auto 27px;
+    }
+
+    .cta a {
+        display: inline-block;
+        background: white;
+        color: #172b3f;
+        padding: 14px 28px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 800;
+        transition: 0.25s;
+    }
+
+    .cta a:hover {
+        transform: translateY(-2px);
+    }
+
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+
+    footer {
+        background: #0d1a27;
+        color: white;
+        padding: 50px 8% 20px;
+    }
+
+    .footer-container {
+        max-width: 1150px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 50px;
+    }
+
+    .footer-section h3 {
+        margin-bottom: 15px;
+    }
+
+    .footer-brand {
+        font-size: 24px;
+        font-weight: 800;
+    }
+
+    .footer-brand span {
+        color: #39d5ff;
+    }
+
+    .footer-section p {
+        color: #9caebe;
+        line-height: 1.7;
+        font-size: 14px;
+        max-width: 440px;
+    }
+
+    .footer-section a {
+        display: block;
+        color: #9caebe;
+        text-decoration: none;
+        margin-bottom: 10px;
+        font-size: 14px;
+        transition: 0.2s;
+    }
+
+    .footer-section a:hover {
+        color: #39d5ff;
+    }
+
+    .copyright {
+        max-width: 1150px;
+        margin: 35px auto 0;
+        padding-top: 20px;
+        border-top: 1px solid #263645;
+        text-align: center;
+        color: #718091;
+        font-size: 13px;
+    }
+
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+
+    @media (max-width: 1000px) {
 
         .hero {
-            min-height: 500px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            padding: 70px 10%;
-
-            background: linear-gradient(
-                135deg,
-                #eaf4ff,
-                #f8fbff
-            );
+            flex-direction: column;
+            text-align: center;
         }
-
 
         .hero-content {
-            width: 55%;
+            max-width: 750px;
         }
-
-
-        .hero-content h1 {
-            font-size: 45px;
-            line-height: 1.2;
-
-            margin-bottom: 20px;
-
-            color: #243447;
-        }
-
-
-        .hero-content h1 span {
-            color: #2c7be5;
-        }
-
 
         .hero-content p {
-            font-size: 18px;
-            line-height: 1.7;
-
-            color: #5c6773;
-
-            margin-bottom: 30px;
+            margin-left: auto;
+            margin-right: auto;
         }
-
 
         .hero-buttons {
-            display: flex;
-            gap: 15px;
+            justify-content: center;
         }
 
-
-        .primary-btn {
-            background: #243447;
-            color: white;
-
-            padding: 13px 25px;
-
-            border-radius: 7px;
-
-            text-decoration: none;
-
-            font-weight: bold;
+        .digital-card {
+            width: 420px;
         }
-
-
-        .secondary-btn {
-            background: white;
-            color: #243447;
-
-            border: 1px solid #243447;
-
-            padding: 13px 25px;
-
-            border-radius: 7px;
-
-            text-decoration: none;
-
-            font-weight: bold;
-        }
-
-
-        .primary-btn:hover {
-            background: #1b2836;
-        }
-
-
-        .secondary-btn:hover {
-            background: #243447;
-            color: white;
-        }
-
-
-        /* =====================================
-           HERO CARD
-        ===================================== */
-
-        .hero-card {
-            width: 320px;
-
-            background: white;
-
-            padding: 30px;
-
-            border-radius: 15px;
-
-            box-shadow:
-                0 10px 30px rgba(0,0,0,0.12);
-
-            text-align: center;
-        }
-
-
-        .hero-card-icon {
-            font-size: 55px;
-            margin-bottom: 15px;
-        }
-
-
-        .hero-card h2 {
-            margin-bottom: 12px;
-        }
-
-
-        .hero-card p {
-            color: #777;
-            line-height: 1.6;
-        }
-
-
-        /* =====================================
-           SECTION
-        ===================================== */
-
-        .section {
-            padding: 70px 10%;
-            text-align: center;
-        }
-
-
-        .section h2 {
-            font-size: 32px;
-            margin-bottom: 12px;
-        }
-
-
-        .section-subtitle {
-            color: #777;
-            margin-bottom: 40px;
-        }
-
-
-        /* =====================================
-           FEATURES
-        ===================================== */
-
-        .features {
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 25px;
-        }
-
-
-        .feature-card {
-            background: white;
-
-            padding: 30px;
-
-            border-radius: 12px;
-
-            box-shadow:
-                0 5px 18px rgba(0,0,0,0.08);
-
-            transition: 0.3s;
-        }
-
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-        }
-
-
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 15px;
-        }
-
-
-        .feature-card h3 {
-            margin-bottom: 12px;
-        }
-
-
-        .feature-card p {
-            color: #777;
-            line-height: 1.6;
-        }
-
-
-        /* =====================================
-           WORKFLOW
-        ===================================== */
 
         .workflow {
-            background: #eef4fa;
+            grid-template-columns: repeat(2, 1fr);
         }
 
-
-        .workflow-container {
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            flex-wrap: wrap;
-
-            gap: 10px;
+        .features {
+            grid-template-columns: 1fr 1fr;
         }
 
+    }
 
-        .workflow-step {
-            background: white;
 
-            padding: 18px 20px;
+    @media (max-width: 700px) {
 
-            border-radius: 8px;
-
-            box-shadow:
-                0 3px 10px rgba(0,0,0,0.08);
-
-            font-weight: bold;
-
-            min-width: 140px;
+        header {
+            padding: 15px 20px;
         }
 
-
-        .arrow {
-            font-size: 25px;
-            color: #2c7be5;
+        nav {
+            gap: 8px;
         }
 
-
-        /* =====================================
-           CTA
-        ===================================== */
-
-        .cta {
-            background: #243447;
-            color: white;
-
-            text-align: center;
-
-            padding: 60px 20px;
+        nav a:not(.login-btn):not(.register-btn) {
+            display: none;
         }
 
-
-        .cta h2 {
-            font-size: 32px;
-            margin-bottom: 15px;
+        .hero {
+            padding: 65px 6%;
         }
 
-
-        .cta p {
-            color: #d8dee5;
-            margin-bottom: 25px;
+        .hero-content h1 {
+            font-size: 39px;
         }
 
-
-        .cta a {
-            display: inline-block;
-
-            background: #61dafb;
-
-            color: #243447;
-
-            padding: 13px 28px;
-
-            border-radius: 7px;
-
-            text-decoration: none;
-
-            font-weight: bold;
+        .digital-card {
+            width: 100%;
+            min-width: 0;
         }
 
-
-        /* =====================================
-           FOOTER
-        ===================================== */
-
-        footer {
-            background: #17232f;
-            color: white;
-
-            padding: 40px 10% 20px;
+        .section {
+            padding: 65px 6%;
         }
 
+        .workflow {
+            grid-template-columns: 1fr;
+        }
+
+        .features {
+            grid-template-columns: 1fr;
+        }
+
+        .outcomes {
+            grid-template-columns: 1fr;
+        }
+
+        .report-box {
+            grid-template-columns: 1fr;
+            padding: 25px;
+        }
 
         .footer-container {
-            display: grid;
-
-            grid-template-columns:
-                2fr 1fr 1fr;
-
-            gap: 40px;
+            grid-template-columns: 1fr;
+            gap: 30px;
         }
 
-
-        .footer-section h3 {
-            margin-bottom: 15px;
+        .ai-flow {
+            flex-direction: column;
         }
 
-
-        .footer-section p {
-            color: #b9c1c9;
-
-            line-height: 1.6;
+        .ai-arrow {
+            transform: rotate(90deg);
         }
 
+    }
 
-        .footer-section a {
-            display: block;
+</style>
 
-            color: #b9c1c9;
-
-            text-decoration: none;
-
-            margin-bottom: 10px;
-        }
-
-
-        .footer-section a:hover {
-            color: #61dafb;
-        }
-
-
-        .copyright {
-            border-top: 1px solid #35414d;
-
-            margin-top: 30px;
-
-            padding-top: 20px;
-
-            text-align: center;
-
-            color: #9ca7b2;
-
-            font-size: 14px;
-        }
-
-
-        /* =====================================
-           RESPONSIVE
-        ===================================== */
-
-        @media (max-width: 900px) {
-
-            header {
-                padding: 15px 25px;
-            }
-
-            nav {
-                gap: 10px;
-            }
-
-            .hero {
-                flex-direction: column;
-                text-align: center;
-                gap: 40px;
-            }
-
-            .hero-content {
-                width: 100%;
-            }
-
-            .hero-buttons {
-                justify-content: center;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-container {
-                grid-template-columns: 1fr;
-            }
-
-        }
-
-
-    </style>
 
 </head>
 
-
 <body>
-
 
 <!-- =========================================
      HEADER
@@ -504,44 +828,37 @@
 
 <header>
 
+
+<div>
+
     <div class="logo">
         Fin<span>Wise</span>
     </div>
 
+    <span class="logo-subtitle">
+        AI PERSONAL FINANCE HEALTH COACH
+    </span>
 
-    <nav>
+</div>
 
-        <a href="{% url 'home' %}">
-            Home
-        </a>
 
-        <a href="#features">
-            Features
-        </a>
+<nav>
 
-        <a href="#workflow">
-            How It Works
-        </a>
 
-        <a
-            href="{% url 'login' %}"
-            class="login-btn"
-        >
-            Login
-        </a>
+    <a href="{% url 'login' %}"
+       class="login-btn">
+        Login
+    </a>
 
-        <a
-            href="{% url 'registration' %}"
-            class="register-btn"
-        >
-            Register
-        </a>
+    <a href="{% url 'registration' %}"
+       class="register-btn">
+        Register
+    </a>
 
-    </nav>
+</nav>
+
 
 </header>
-
-
 
 <!-- =========================================
      HERO
@@ -550,358 +867,899 @@
 <section class="hero">
 
 
-    <div class="hero-content">
+<div class="hero-content">
 
-        <h1>
-            Manage Your Money
-            <span>Smarter</span>
-        </h1>
-
-
-        <p>
-
-            Take control of your personal finances with
-            intelligent financial health prediction,
-            personalized budget recommendations and
-            financial risk management.
-
-        </p>
+    <div class="badge">
+        ✦ AI-BASED FINANCIAL HEALTH ANALYSIS
+    </div>
 
 
-        <div class="hero-buttons">
-
-            <a
-                href="{% url 'registration' %}"
-                class="primary-btn"
-            >
-                Get Started
-            </a>
+    <h1>
+        Understand Your
+        <span>Financial Health</span>
+        Smarter
+    </h1>
 
 
-            <a
-                href="#features"
-                class="secondary-btn"
-            >
-                Explore Features
-            </a>
+    <p>
 
+        FinWise helps you record your income, expenses
+        and loan information, analyze your financial
+        activity and use an SVM machine learning model
+        to generate a personalized financial health report.
+
+    </p>
+
+
+    <div class="hero-buttons">
+
+        <a href="{% url 'registration' %}"
+           class="primary-btn">
+
+            Start Your Financial Journey →
+
+        </a>
+
+
+        <a href="#workflow"
+           class="secondary-btn">
+
+            Explore the System
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- DIGITAL FINANCIAL PREVIEW -->
+
+<div class="digital-card">
+
+    <div class="card-top">
+
+        <div class="card-title">
+            FINWISE FINANCIAL ANALYSIS
+        </div>
+
+        <div class="ai-pill">
+            SVM AI
         </div>
 
     </div>
 
 
+    <div class="health-preview">
 
-    <div class="hero-card">
-
-        <div class="hero-card-icon">
-            💰
-        </div>
+        <small>
+            Financial Health Status
+        </small>
 
         <h2>
-            Financial Health
+            Good
         </h2>
 
-        <p>
-
-            Analyze your financial information
-            and predict your financial health as
-            <b>Good, Average or Poor</b>.
-
-        </p>
+        <div class="status-line">
+            Generated from recorded financial activity
+        </div>
 
     </div>
+
+
+    <div class="data-grid">
+
+        <div class="data-box">
+
+            <small>
+                Monthly Income
+            </small>
+
+            <strong>
+                ₹30,000
+            </strong>
+
+        </div>
+
+
+        <div class="data-box">
+
+            <small>
+                Monthly Expenses
+            </small>
+
+            <strong>
+                ₹18,000
+            </strong>
+
+        </div>
+
+
+        <div class="data-box">
+
+            <small>
+                Savings
+            </small>
+
+            <strong>
+                ₹12,000
+            </strong>
+
+        </div>
+
+
+        <div class="data-box">
+
+            <small>
+                Savings Ratio
+            </small>
+
+            <strong>
+                40%
+            </strong>
+
+        </div>
+
+    </div>
+
+
+    <div class="analysis-bar">
+
+        <small>
+            Financial Analysis
+        </small>
+
+        <div class="bar">
+            <span></span>
+        </div>
+
+    </div>
+
+</div>
 
 
 </section>
 
+<!-- =========================================
+     WORKFLOW
+========================================= -->
 
+<section class="section workflow-section"
+         id="workflow">
+
+
+<div class="section-heading">
+
+    <div class="section-label">
+        SYSTEM WORKFLOW
+    </div>
+
+    <h2>
+        How FinWise Works
+    </h2>
+
+    <p>
+        Your financial information moves through a
+        structured process from data entry to
+        machine-learning-based financial health analysis.
+    </p>
+
+</div>
+
+
+<div class="workflow">
+
+
+    <div class="workflow-card">
+
+        <div class="workflow-number">
+            01
+        </div>
+
+        <h3>
+            Registration
+        </h3>
+
+        <p>
+            Create your personal FinWise account
+            to access the finance management system.
+        </p>
+
+    </div>
+
+
+    <div class="workflow-card">
+
+        <div class="workflow-number">
+            02
+        </div>
+
+        <h3>
+            User Profile
+        </h3>
+
+        <p>
+            Enter the basic profile information
+            required for financial health analysis.
+        </p>
+
+    </div>
+
+
+    <div class="workflow-card">
+
+        <div class="workflow-number">
+            03
+        </div>
+
+        <h3>
+            Income Tracker
+        </h3>
+
+        <p>
+            Record salary, freelance income and
+            other sources of income.
+        </p>
+
+    </div>
+
+
+    <div class="workflow-card">
+
+        <div class="workflow-number">
+            04
+        </div>
+
+        <h3>
+            Expense Tracker
+        </h3>
+
+        <p>
+            Record and categorize your daily and
+            monthly financial expenses.
+        </p>
+
+    </div>
+
+
+    <div class="workflow-card">
+
+        <div class="workflow-number">
+            05
+        </div>
+
+        <h3>
+            Loan Information
+        </h3>
+
+        <p>
+            Record loan amount and monthly EMI
+            information used in financial analysis.
+        </p>
+
+    </div>
+
+
+    <div class="workflow-card">
+
+        <div class="workflow-number">
+            06
+        </div>
+
+        <h3>
+            Financial Analysis
+        </h3>
+
+        <p>
+            Calculate income, expenses, savings
+            and important financial ratios.
+        </p>
+
+    </div>
+
+
+    <div class="workflow-card">
+
+        <div class="workflow-number">
+            07
+        </div>
+
+        <h3>
+            SVM Prediction
+        </h3>
+
+        <p>
+            Process the required financial features
+            through the trained SVM model.
+        </p>
+
+    </div>
+
+
+    <div class="workflow-card">
+
+        <div class="workflow-number">
+            08
+        </div>
+
+        <h3>
+            Financial Health Report
+        </h3>
+
+        <p>
+            View financial status, personalized
+            recommendation and risk-management guidance.
+        </p>
+
+    </div>
+
+
+</div>
+
+
+</section>
 
 <!-- =========================================
      FEATURES
 ========================================= -->
 
-<section
-    class="section"
-    id="features"
->
+<section class="section"
+         id="features">
+
+
+<div class="section-heading">
+
+    <div class="section-label">
+        CORE FEATURES
+    </div>
 
     <h2>
-        Our Features
+        One Complete Financial Health System
     </h2>
 
-
-    <p class="section-subtitle">
-
-        Everything you need to understand
-        and improve your financial health.
-
+    <p>
+        FinWise combines financial tracking,
+        automated analysis and machine learning
+        into a single system.
     </p>
 
+</div>
 
-    <div class="features">
+
+<div class="features">
 
 
-        <div class="feature-card">
+    <div class="feature-card">
 
-            <div class="feature-icon">
-                📊
-            </div>
+        <div class="feature-icon">
+            💰
+        </div>
+
+        <h3>
+            Income Tracking
+        </h3>
+
+        <p>
+            Store income records and calculate
+            the user's total financial inflow.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            💳
+        </div>
+
+        <h3>
+            Expense Tracking
+        </h3>
+
+        <p>
+            Record expenses using categories such
+            as groceries, rent, transportation and education.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🏦
+        </div>
+
+        <h3>
+            Loan Information
+        </h3>
+
+        <p>
+            Store loan information and monthly EMI
+            values for debt-related financial analysis.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            📊
+        </div>
+
+        <h3>
+            Financial Analysis
+        </h3>
+
+        <p>
+            Automatically calculate savings,
+            expense ratio, savings ratio and debt-to-income ratio.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🧠
+        </div>
+
+        <h3>
+            SVM Prediction
+        </h3>
+
+        <p>
+            A trained Support Vector Machine model
+            classifies financial health into Good,
+            Average or Poor.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            💡
+        </div>
+
+        <h3>
+            Personalized Recommendation
+        </h3>
+
+        <p>
+            Receive guidance based on the predicted
+            financial health condition.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            🛡️
+        </div>
+
+        <h3>
+            Risk Management
+        </h3>
+
+        <p>
+            Receive practical guidance for controlling
+            debt, expenses and financial risks.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            📄
+        </div>
+
+        <h3>
+            Financial Health Report
+        </h3>
+
+        <p>
+            View financial status together with
+            financial summary, recommendation and risk management.
+        </p>
+
+    </div>
+
+
+    <div class="feature-card">
+
+        <div class="feature-icon">
+            📅
+        </div>
+
+        <h3>
+            Monthly Report
+        </h3>
+
+        <p>
+            Review your financial information through
+            the monthly end-of-period report.
+        </p>
+
+    </div>
+
+
+</div>
+
+
+</section>
+
+<!-- =========================================
+     AI ANALYSIS
+========================================= -->
+
+<section class="ai-section"
+         id="ai">
+
+
+<div class="section-label">
+    MACHINE LEARNING PROCESS
+</div>
+
+<h2>
+    From Financial Data to AI Insight
+</h2>
+
+<p>
+
+    FinWise uses the financial information recorded
+    by the user to calculate relevant features and
+    process them through the trained SVM model.
+
+</p>
+
+
+<div class="ai-flow">
+
+    <div class="ai-step">
+        Income
+    </div>
+
+    <div class="ai-arrow">
+        →
+    </div>
+
+    <div class="ai-step">
+        Expenses
+    </div>
+
+    <div class="ai-arrow">
+        →
+    </div>
+
+    <div class="ai-step">
+        Loan / EMI
+    </div>
+
+    <div class="ai-arrow">
+        →
+    </div>
+
+    <div class="ai-step">
+        Database
+    </div>
+
+    <div class="ai-arrow">
+        →
+    </div>
+
+    <div class="ai-step">
+        Financial Analysis
+    </div>
+
+    <div class="ai-arrow">
+        →
+    </div>
+
+    <div class="ai-step">
+        SVM
+    </div>
+
+    <div class="ai-arrow">
+        →
+    </div>
+
+    <div class="ai-step">
+        Financial Health
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =========================================
+     FINANCIAL HEALTH OUTCOMES
+========================================= -->
+
+<section class="section">
+
+
+<div class="section-heading">
+
+    <div class="section-label">
+        PREDICTION OUTPUT
+    </div>
+
+    <h2>
+        Financial Health Outcomes
+    </h2>
+
+    <p>
+        The SVM model provides one of three financial
+        health classifications based on the processed features.
+    </p>
+
+</div>
+
+
+<div class="outcomes">
+
+
+    <div class="outcome-card">
+
+        <div class="outcome-icon">
+            🟢
+        </div>
+
+        <h3>
+            Good
+        </h3>
+
+        <p>
+            Indicates a healthier financial condition.
+            The system provides guidance to maintain
+            savings and responsible financial habits.
+        </p>
+
+    </div>
+
+
+    <div class="outcome-card">
+
+        <div class="outcome-icon">
+            🟡
+        </div>
+
+        <h3>
+            Average
+        </h3>
+
+        <p>
+            Indicates a moderate financial condition.
+            The system provides guidance to control
+            unnecessary expenses and improve savings.
+        </p>
+
+    </div>
+
+
+    <div class="outcome-card">
+
+        <div class="outcome-icon">
+            🔴
+        </div>
+
+        <h3>
+            Poor
+        </h3>
+
+        <p>
+            Indicates that the financial condition
+            requires attention and provides guidance
+            for improving financial management.
+        </p>
+
+    </div>
+
+
+</div>
+
+
+</section>
+
+<!-- =========================================
+     REPORT CONTENT
+========================================= -->
+
+<section class="section report-section">
+
+
+<div class="section-heading">
+
+    <div class="section-label">
+        FINAL OUTPUT
+    </div>
+
+    <h2>
+        What Your Financial Report Provides
+    </h2>
+
+    <p>
+        After processing your financial activity,
+        FinWise presents the results in a simple
+        and understandable report.
+    </p>
+
+</div>
+
+
+<div class="report-box">
+
+
+    <div class="report-item">
+
+        <div class="report-icon">
+            📊
+        </div>
+
+        <div>
 
             <h3>
-                Financial Health Prediction
+                Monthly Financial Summary
             </h3>
 
             <p>
-
-                Our SVM-based machine learning model
-                analyzes your financial information and
-                predicts your financial health status.
-
+                View total income, total expenses,
+                savings and financial ratios.
             </p>
 
         </div>
 
+    </div>
 
 
-        <div class="feature-card">
+    <div class="report-item">
 
-            <div class="feature-icon">
-                💵
-            </div>
+        <div class="report-icon">
+            🧠
+        </div>
+
+        <div>
 
             <h3>
-                Budget Recommendation
+                SVM Financial Health Prediction
             </h3>
 
             <p>
-
-                Receive personalized budget suggestions
-                based on your income, expenses,
-                savings and financial condition.
-
+                View the predicted financial health
+                classification generated by the SVM model.
             </p>
 
         </div>
 
+    </div>
 
 
-        <div class="feature-card">
+    <div class="report-item">
 
-            <div class="feature-icon">
-                🛡️
-            </div>
+        <div class="report-icon">
+            💡
+        </div>
+
+        <div>
+
+            <h3>
+                Personalized Recommendation
+            </h3>
+
+            <p>
+                Receive guidance based on the predicted
+                financial health condition.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="report-item">
+
+        <div class="report-icon">
+            🛡️
+        </div>
+
+        <div>
 
             <h3>
                 Financial Risk Management
             </h3>
 
             <p>
-
-                Identify financial risks such as
-                high expenses, debt burden and
-                insufficient savings.
-
+                Receive guidance for managing expenses,
+                debt obligations and savings.
             </p>
 
         </div>
-
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                🤖
-            </div>
-
-            <h3>
-                AI Chatbot Guidance
-            </h3>
-
-            <p>
-
-                Get financial guidance and answers
-                to common personal finance questions
-                through the AI chatbot.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                📈
-            </div>
-
-            <h3>
-                Financial Dashboard
-            </h3>
-
-            <p>
-
-                View your financial health,
-                recommendations and important
-                financial information in one place.
-
-            </p>
-
-        </div>
-
-
-
-        <div class="feature-card">
-
-            <div class="feature-icon">
-                🔐
-            </div>
-
-            <h3>
-                Secure Account
-            </h3>
-
-            <p>
-
-                Create a personal account and
-                securely access your financial
-                management features.
-
-            </p>
-
-        </div>
-
 
     </div>
 
-</section>
 
+    <div class="report-item">
 
-
-<!-- =========================================
-     WORKFLOW
-========================================= -->
-
-<section
-    class="section workflow"
-    id="workflow"
->
-
-    <h2>
-        How It Works
-    </h2>
-
-
-    <p class="section-subtitle">
-
-        Our system follows a simple
-        financial assessment process.
-
-    </p>
-
-
-    <div class="workflow-container">
-
-
-        <div class="workflow-step">
-            User Data
+        <div class="report-icon">
+            📅
         </div>
 
+        <div>
 
-        <div class="arrow">
-            →
+            <h3>
+                Monthly Report
+            </h3>
+
+            <p>
+                Review your financial activity and
+                results at the end of the reporting period.
+            </p>
+
         </div>
-
-
-        <div class="workflow-step">
-            Preprocessing
-        </div>
-
-
-        <div class="arrow">
-            →
-        </div>
-
-
-        <div class="workflow-step">
-            SVM Model
-        </div>
-
-
-        <div class="arrow">
-            →
-        </div>
-
-
-        <div class="workflow-step">
-            Prediction
-        </div>
-
-
-        <div class="arrow">
-            →
-        </div>
-
-
-        <div class="workflow-step">
-            Assessment
-        </div>
-
-
-        <div class="arrow">
-            →
-        </div>
-
-
-        <div class="workflow-step">
-            Recommendation
-        </div>
-
-
-        <div class="arrow">
-            →
-        </div>
-
-
-        <div class="workflow-step">
-            Risk Management
-        </div>
-
 
     </div>
 
+
+    <div class="report-item">
+
+        <div class="report-icon">
+            🔄
+        </div>
+
+        <div>
+
+            <h3>
+                Continuous Financial Tracking
+            </h3>
+
+            <p>
+                Continue recording income and expenses
+                to keep your financial information updated.
+            </p>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+
 </section>
 
-
-
 <!-- =========================================
-     CALL TO ACTION
+     CTA
 ========================================= -->
 
 <section class="cta">
 
-    <h2>
-        Start Managing Your Finances Today
-    </h2>
 
+<h2>
+    Start Your Financial Health Journey
+</h2>
 
-    <p>
+<p>
+    Track your financial activity, analyze your
+    financial condition and understand your
+    financial health with FinWise.
+</p>
 
-        Create your account and discover
-        your financial health.
+<a href="{% url 'registration' %}">
+    Create Your FinWise Account →
+</a>
 
-    </p>
-
-
-    <a
-        href="{% url 'registration' %}"
-    >
-        Create Account
-    </a>
 
 </section>
-
-
 
 <!-- =========================================
      FOOTER
@@ -910,85 +1768,82 @@
 <footer>
 
 
-    <div class="footer-container">
+<div class="footer-container">
 
 
-        <div class="footer-section">
+    <div class="footer-section">
 
-            <h3>
-                FinWise
-            </h3>
-
-            <p>
-
-                A Personal Finance Management System
-                that helps users understand their
-                financial health, manage their budget
-                and identify financial risks.
-
-            </p>
-
+        <div class="footer-brand">
+            Fin<span>Wise</span>
         </div>
 
+        <p style="margin-top: 12px;">
 
+            AI-Based Personal Finance Health Coach
+            designed to help users track financial
+            activity, analyze financial health and
+            receive personalized financial guidance.
 
-        <div class="footer-section">
-
-            <h3>
-                Quick Links
-            </h3>
-
-            <a href="{% url 'home' %}">
-                Home
-            </a>
-
-            <a href="#features">
-                Features
-            </a>
-
-            <a href="#workflow">
-                How It Works
-            </a>
-
-            <a href="{% url 'registration' %}">
-                Register
-            </a>
-
-        </div>
-
-
-
-        <div class="footer-section">
-
-            <h3>
-                Account
-            </h3>
-
-            <a href="{% url 'login' %}">
-                Login
-            </a>
-
-            <a href="{% url 'registration' %}">
-                Create Account
-            </a>
-
-        </div>
-
+        </p>
 
     </div>
 
 
-    <div class="copyright">
+    <div class="footer-section">
 
-        © 2026 FinWise -
-        Personal Finance Management System.
-        All Rights Reserved.
+        <h3>
+            Explore
+        </h3>
+
+        <a href="{% url 'home' %}">
+            Home
+        </a>
+
+        <a href="#workflow">
+            Workflow
+        </a>
+
+        <a href="#features">
+            Features
+        </a>
+
+        <a href="#ai">
+            AI Analysis
+        </a>
 
     </div>
+
+
+    <div class="footer-section">
+
+        <h3>
+            Account
+        </h3>
+
+        <a href="{% url 'login' %}">
+            Login
+        </a>
+
+        <a href="{% url 'registration' %}">
+            Register
+        </a>
+
+    </div>
+
+
+</div>
+
+
+<div class="copyright">
+
+    © 2026 FinWise -
+    AI-Based Personal Finance Health Coach.
+    All Rights Reserved.
+
+</div>
 
 
 </footer>
-
 
 </body>
 
