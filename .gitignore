@@ -1,0 +1,11 @@
+venv/
+venv313/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+.idea/
+.vscode/
+*.log
+models/*.pkl
+selected_features.pkl

@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Financial Analysis - FinWise</title>
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Segoe UI", Arial, sans-serif;
+        }
+
+
+        body {
+
+            min-height: 100vh;
+
+            background:
+                radial-gradient(
+                    circle at 10% 10%,
+                    rgba(37, 99, 235, 0.12),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 90% 80%,
+                    rgba(14, 165, 233, 0.12),
+                    transparent 30%
+                ),
+
+                linear-gradient(
+                    135deg,
+                    #eef5ff,
+                    #f8fbff
+                );
+
+            color: #1e293b;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .top-header {
+
+            width: 100%;
+
+            background: rgba(15, 23, 42, 0.97);
+
+            color: white;
+
+            padding: 18px 6%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            box-shadow:
+                0 5px 25px
+                rgba(15, 23, 42, 0.18);
+
+            position: sticky;
+
+            top: 0;
+
+            z-index: 100;
+        }
+
+
+        .logo {
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .logo span {
+
+            color: #38bdf8;
+        }
+
+
+        .header-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 13px;
+
+            color: #cbd5e1;
+        }
+
+
+        .status-dot {
+
+            width: 9px;
+
+            height: 9px;
+
+            background: #22c55e;
+
+            border-radius: 50%;
+
+            box-shadow:
+                0 0 10px #22c55e;
+        }
+
+
+        /* =========================
+           MAIN CONTAINER
+        ========================= */
+
+        .container {
+
+            width: 92%;
+
+            max-width: 1000px;
+
+            margin: 45px auto;
+        }
+
+
+        h1 {
+
+            text-align: center;
+
+            color: #0f172a;
+
+            margin-bottom: 12px;
+
+            font-size: 38px;
+
+            font-weight: 800;
+
+            letter-spacing: -0.5px;
+        }
+
+
+        h1::after {
+
+            content: "";
+
+            display: block;
+
+            width: 70px;
+
+            height: 4px;
+
+            margin: 14px auto 0;
+
+            border-radius: 10px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #0ea5e9
+                );
+        }
+
+
+        /* =========================
+           SUMMARY BOX
+        ========================= */
+
+        .summary-box {
+
+            background:
+                rgba(255, 255, 255, 0.92);
+
+            padding: 35px;
+
+            border-radius: 22px;
+
+            border: 1px solid #e2e8f0;
+
+            box-shadow:
+                0 18px 45px
+                rgba(15, 23, 42, 0.09);
+
+            backdrop-filter: blur(10px);
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .summary-box::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #0ea5e9,
+                    #38bdf8
+                );
+        }
+
+
+        .summary-box > h2 {
+
+            color: #0f172a;
+
+            margin-bottom: 30px;
+
+            text-align: center;
+
+            font-size: 22px;
+
+            font-weight: 750;
+        }
+
+
+        /* =========================
+           DATE SELECTION
+        ========================= */
+
+        .date-section {
+
+            background: #f8fafc;
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 15px;
+
+            padding: 22px;
+
+            margin-bottom: 30px;
+        }
+
+
+        .date-section h3 {
+
+            text-align: center;
+
+            color: #0f172a;
+
+            margin-bottom: 18px;
+
+            font-size: 17px;
+        }
+
+
+        .date-form {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr auto;
+
+            gap: 15px;
+
+            align-items: end;
+        }
+
+
+        .date-field {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .date-field label {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            color: #475569;
+        }
+
+
+        .date-field input {
+
+            width: 100%;
+
+            padding: 12px 14px;
+
+            border: 1px solid #cbd5e1;
+
+            border-radius: 9px;
+
+            background: white;
+
+            color: #1e293b;
+
+            font-size: 14px;
+
+            outline: none;
+        }
+
+
+        .date-field input:focus {
+
+            border-color: #2563eb;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(37, 99, 235, 0.10);
+        }
+
+
+        .analyze-button {
+
+            border: none;
+
+            cursor: pointer;
+
+            padding: 12px 24px;
+
+            border-radius: 9px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #0284c7
+                );
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            box-shadow:
+                0 8px 18px
+                rgba(37, 99, 235, 0.20);
+
+            transition: 0.25s ease;
+        }
+
+
+        .analyze-button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(37, 99, 235, 0.28);
+        }
+
+
+        /* =========================
+           SELECTED PERIOD
+        ========================= */
+
+        .selected-period {
+
+            text-align: center;
+
+            margin-bottom: 25px;
+
+            color: #64748b;
+
+            font-size: 14px;
+        }
+
+
+        .selected-period strong {
+
+            color: #2563eb;
+        }
+
+
+        /* =========================
+           ERROR MESSAGE
+        ========================= */
+
+        .error-box {
+
+            background: #fee2e2;
+
+            color: #b91c1c;
+
+            border: 1px solid #fca5a5;
+
+            border-left: 5px solid #dc2626;
+
+            border-radius: 12px;
+
+            padding: 16px 18px;
+
+            margin-bottom: 25px;
+
+            font-size: 14px;
+
+            line-height: 1.6;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           FINANCIAL CARDS
+        ========================= */
+
+        .cards {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(2, 1fr);
+
+            gap: 20px;
+        }
+
+
+        .card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #ffffff,
+                    #f8fbff
+                );
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 17px;
+
+            padding: 25px 20px;
+
+            text-align: center;
+
+            min-height: 145px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+
+        .card::before {
+
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #2563eb,
+                    #38bdf8
+                );
+        }
+
+
+        .card:hover {
+
+            transform: translateY(-5px);
+
+            border-color: #bfdbfe;
+
+            box-shadow:
+                0 14px 30px
+                rgba(37, 99, 235, 0.12);
+        }
+
+
+        .card h3 {
+
+            color: #64748b;
+
+            font-size: 14px;
+
+            margin-bottom: 12px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+            font-weight: 700;
+        }
+
+
+        .amount {
+
+            color: #2563eb;
+
+            font-size: 29px;
+
+            font-weight: 800;
+        }
+
+
+        .percentage {
+
+            color: #2563eb;
+
+            font-size: 29px;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================
+           EXPENSE CARD
+        ========================= */
+
+        .expense-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #fffafa,
+                    #fff5f5
+                );
+
+            border: 1px solid #fecaca;
+        }
+
+
+        .expense-card::before {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #dc2626,
+                    #f87171
+                );
+        }
+
+
+        .expense-card .amount {
+
+            color: #dc2626;
+        }
+
+
+        .expense-card:hover {
+
+            border-color: #fca5a5;
+
+            box-shadow:
+                0 14px 30px
+                rgba(220, 38, 38, 0.10);
+        }
+
+
+        /* =========================
+           SAVINGS CARD
+        ========================= */
+
+        .savings-card {
+
+            background:
+                linear-gradient(
+                    145deg,
+                    #f0fdf4,
+                    #ecfdf5
+                );
+
+            border: 1px solid #bbf7d0;
+        }
+
+
+        .savings-card::before {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #16a34a,
+                    #4ade80
+                );
+        }
+
+
+        .savings-card .amount {
+
+            color: #15803d;
+        }
+
+
+        .savings-card:hover {
+
+            border-color: #86efac;
+
+            box-shadow:
+                0 14px 30px
+                rgba(22, 163, 74, 0.12);
+        }
+
+
+        /* =========================
+           PREDICTION SECTION
+        ========================= */
+
+        .prediction-section {
+
+            background:
+                rgba(255, 255, 255, 0.94);
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            margin-top: 30px;
+
+            box-shadow:
+                0 18px 45px
+                rgba(15, 23, 42, 0.09);
+        }
+
+
+        .prediction-section h2,
+        .recommendation-section h2,
+        .risk-section h2 {
+
+            color: #0f172a;
+
+            text-align: center;
+
+            margin-bottom: 22px;
+
+            font-size: 22px;
+
+            font-weight: 750;
+        }
+
+
+        .prediction-box {
+
+            padding: 28px;
+
+            border-radius: 16px;
+
+            text-align: center;
+
+            font-size: 30px;
+
+            font-weight: 800;
+        }
+
+
+        .prediction-good {
+
+            background: #dcfce7;
+
+            color: #15803d;
+
+            border: 2px solid #22c55e;
+        }
+
+
+        .prediction-average {
+
+            background: #fef9c3;
+
+            color: #a16207;
+
+            border: 2px solid #eab308;
+        }
+
+
+        .prediction-poor {
+
+            background: #fee2e2;
+
+            color: #dc2626;
+
+            border: 2px solid #ef4444;
+        }
+
+
+        .prediction-none {
+
+            background: #e5e7eb;
+
+            color: #374151;
+
+            border: 2px solid #9ca3af;
+        }
+
+
+        /* =========================
+           RECOMMENDATION
+        ========================= */
+
+        .recommendation-section {
+
+            background:
+                rgba(255, 255, 255, 0.94);
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            margin-top: 30px;
+
+            box-shadow:
+                0 18px 45px
+                rgba(15, 23, 42, 0.09);
+        }
+
+
+        .recommendation-box {
+
+            background: #eef6ff;
+
+            border-left: 5px solid #2563eb;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            color: #334155;
+
+            font-size: 16px;
+
+            line-height: 1.7;
+
+            text-align: center;
+        }
+
+
+        /* =========================
+           RISK MANAGEMENT
+        ========================= */
+
+        .risk-section {
+
+            background:
+                rgba(255, 255, 255, 0.94);
+
+            border: 1px solid #e2e8f0;
+
+            border-radius: 22px;
+
+            padding: 35px;
+
+            margin-top: 30px;
+
+            box-shadow:
+                0 18px 45px
+                rgba(15, 23, 42, 0.09);
+        }
+
+
+        .risk-list {
+
+            list-style: none;
+
+            padding: 0;
+
+            margin: 0;
+        }
+
+
+        .risk-list li {
+
+            background: #f8fafc;
+
+            padding: 16px 20px;
+
+            margin-bottom: 12px;
+
+            border-radius: 12px;
+
+            color: #334155;
+
+            font-size: 15px;
+
+            border-left: 5px solid #2563eb;
+        }
+
+
+        .risk-list li::before {
+
+            content: "✓";
+
+            color: #2563eb;
+
+            font-weight: 800;
+
+            margin-right: 12px;
+        }
+
+
+        /* =========================
+           ACTION BUTTONS
+        ========================= */
+
+        .actions {
+
+            text-align: center;
+
+            margin-top: 35px;
+
+            padding-top: 25px;
+
+            border-top: 1px solid #e2e8f0;
+        }
+
+
+        .button {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            padding: 13px 24px;
+
+            margin: 5px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: 700;
+
+            font-size: 14px;
+
+            color: white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #2563eb,
+                    #0284c7
+                );
+
+            box-shadow:
+                0 8px 18px
+                rgba(37, 99, 235, 0.20);
+
+            transition:
+                transform 0.25s ease,
+                box-shadow 0.25s ease;
+        }
+
+
+        .button:hover {
+
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(37, 99, 235, 0.28);
+        }
+
+
+        .home-button {
+
+            background: #0f172a;
+
+            box-shadow:
+                0 8px 18px
+                rgba(15, 23, 42, 0.15);
+        }
+
+
+        .home-button:hover {
+
+            background: #1e293b;
+
+            box-shadow:
+                0 12px 25px
+                rgba(15, 23, 42, 0.20);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            margin-top: 55px;
+
+            background: #0f172a;
+
+            color: #94a3b8;
+
+            text-align: center;
+
+            padding: 25px 20px;
+        }
+
+
+        .footer strong {
+
+            color: #38bdf8;
+
+            font-size: 16px;
+        }
+
+
+        .footer p {
+
+            font-size: 13px;
+
+            margin-top: 7px;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 650px) {
+
+            .top-header {
+
+                padding: 16px 5%;
+            }
+
+
+            .logo {
+
+                font-size: 20px;
+            }
+
+
+            .header-status {
+
+                font-size: 11px;
+            }
+
+
+            .container {
+
+                width: 94%;
+
+                margin: 30px auto;
+            }
+
+
+            h1 {
+
+                font-size: 29px;
+            }
+
+
+            .summary-box {
+
+                padding: 22px;
+
+                border-radius: 17px;
+            }
+
+
+            .date-form {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .cards {
+
+                grid-template-columns: 1fr;
+            }
+
+
+            .card {
+
+                min-height: 130px;
+            }
+
+
+            .prediction-section,
+            .recommendation-section,
+            .risk-section {
+
+                padding: 22px;
+            }
+
+
+            .prediction-box {
+
+                font-size: 24px;
+            }
+
+
+            .button {
+
+                width: 100%;
+
+                margin: 5px 0;
+            }
+
+
+            .analyze-button {
+
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header class="top-header">
+
+        <div class="logo">
+
+            Fin<span>Wise</span>
+
+        </div>
+
+
+        <div class="header-status">
+
+            <span class="status-dot"></span>
+
+            Financial Analysis
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================
+         MAIN
+    ========================= -->
+
+    <div class="container">
+
+
+        <h1>
+
+           Monthly Financial Analysis
+
+        </h1>
+
+
+        <div class="summary-box">
+
+
+            <h2>
+
+                Financial Summary
+
+            </h2>
+
+
+            <!-- =========================
+                 DATE SELECTION
+            ========================= -->
+
+            <div class="date-section">
+
+
+                <h3>
+
+                    Select Analysis Period
+
+                </h3>
+
+
+                <form
+                    method="GET"
+                    action="{% url 'financial_analysis' %}"
+                    class="date-form"
+                >
+
+                    <div class="date-field">
+
+                        <label for="month">
+
+                            Select Month
+
+                        </label>
+
+
+                        <input
+                            type="month"
+                            id="month"
+                            name="month"
+                            value="{{ selected_month|default:'' }}"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="analyze-button"
+                    >
+
+                        Generate Analysis
+
+                    </button>
+
+                </form>
+
+            </div>
+
+
+
+            <!-- =========================
+                 ERROR
+            ========================= -->
+
+            {% if error %}
+
+                <div class="error-box">
+
+                    {{ error }}
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- =========================
+                 SELECTED PERIOD
+            ========================= -->
+
+            {% if selected_month %}
+
+                <div class="selected-period">
+
+                    Analysis Month:
+
+                    <strong>
+
+                        {{ selected_month }}
+
+                    </strong>
+
+                </div>
+
+            {% endif %}
+
+
+
+            <!-- =========================
+                 FINANCIAL CARDS
+            ========================= -->
+
+            <div class="cards">
+
+
+                <!-- TOTAL INCOME -->
+
+                <div class="card">
+
+                    <h3>
+
+                        Total Income
+
+                    </h3>
+
+                    <p class="amount">
+
+                        ₹{{ total_income }}
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- TOTAL EXPENSES -->
+
+                <div class="card expense-card">
+
+                    <h3>
+
+                        Total Expenses
+
+                    </h3>
+
+                    <p class="amount">
+
+                        ₹{{ total_expenses }}
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- SAVINGS -->
+
+                <div class="card savings-card">
+
+                    <h3>
+
+                        Savings
+
+                    </h3>
+
+                    <p class="amount">
+
+                        ₹{{ savings }}
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- EXPENSE RATIO -->
+
+                <div class="card">
+
+                    <h3>
+
+                        Expense Ratio
+
+                    </h3>
+
+                    <p class="percentage">
+
+                        {{ expense_ratio }}%
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- SAVINGS RATIO -->
+
+                <div class="card">
+
+                    <h3>
+
+                        Savings Ratio
+
+                    </h3>
+
+                    <p class="percentage">
+
+                        {{ savings_ratio }}%
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- DEBT TO INCOME -->
+
+                <div class="card">
+
+                    <h3>
+
+                        Debt-to-Income Ratio
+
+                    </h3>
+
+                    <p class="percentage">
+
+                        {{ debt_to_income_ratio }}%
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- TOTAL LOAN -->
+
+                <div class="card">
+
+                    <h3>
+
+                        Total Loan
+
+                    </h3>
+
+                    <p class="amount">
+
+                        ₹{{ total_loan }}
+
+                    </p>
+
+                </div>
+
+
+
+                <!-- MONTHLY EMI -->
+
+                <div class="card expense-card">
+
+                    <h3>
+
+                        Monthly EMI
+
+                    </h3>
+
+                    <p class="amount">
+
+                        ₹{{ total_emi }}
+
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 EXTRA TREES PREDICTION
+            ========================= -->
+
+            <div class="prediction-section">
+
+
+                <h2>
+
+                    Financial Health Prediction
+
+                </h2>
+
+
+                {% if financial_status %}
+
+
+                    {% if financial_status == "Good" %}
+
+                        <div class="prediction-box prediction-good">
+
+                            Prediction:
+                            {{ financial_status }}
+
+                        </div>
+
+
+                    {% elif financial_status == "Average" %}
+
+                        <div class="prediction-box prediction-average">
+
+                            Prediction:
+                            {{ financial_status }}
+
+                        </div>
+
+
+                    {% elif financial_status == "Poor" %}
+
+                        <div class="prediction-box prediction-poor">
+
+                            Prediction:
+                            {{ financial_status }}
+
+                        </div>
+
+
+                    {% else %}
+
+                        <div class="prediction-box prediction-none">
+
+                            Prediction:
+                            {{ financial_status }}
+
+                        </div>
+
+                    {% endif %}
+
+
+                {% else %}
+
+                    <div class="prediction-box prediction-none">
+
+                        Prediction not available
+
+                    </div>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 RECOMMENDATION
+            ========================= -->
+
+            <div class="recommendation-section">
+
+
+                <h2>
+
+                    Recommendation
+
+                </h2>
+
+
+                <div class="recommendation-box">
+
+
+                    {% if recommendation %}
+
+                        {{ recommendation }}
+
+                    {% else %}
+
+                        Select a date range and click
+                        <strong>Analyze</strong>
+                        to generate the financial analysis.
+
+                    {% endif %}
+
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 RISK MANAGEMENT
+            ========================= -->
+
+            <div class="risk-section">
+
+
+                <h2>
+
+                    Risk Management
+
+                </h2>
+
+
+                {% if risk_management %}
+
+                    <ul class="risk-list">
+
+                        {% for risk in risk_management %}
+
+                            <li>
+
+                                {{ risk }}
+
+                            </li>
+
+                        {% endfor %}
+
+                    </ul>
+
+                {% else %}
+
+                    <ul class="risk-list">
+
+                        <li>
+
+                            Select a date range to generate
+                            risk-management information.
+
+                        </li>
+
+                    </ul>
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <!-- =========================
+                 ACTION BUTTONS
+            ========================= -->
+
+            <div class="actions">
+
+                <!-- Dashboard -->
+                 <a 
+                     href="{% url 'dashboard' %}" 
+                    class="button"
+                >
+                     Dashboard
+                 </a>
+
+                 <!-- Financial Details -->
+                 <a
+                    href="{% url 'financial_details' %}"
+                    class="button"
+                 >
+                    Financial Details
+                </a>
+                <a
+                    href="{% url 'home' %}"
+                    class="button home-button"
+                >
+
+                    Back to Home
+
+                </a>
+
+            </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer class="footer">
+
+
+        <strong>
+
+            FinWise
+
+        </strong>
+
+
+        <p>
+
+            AI-Based Personal Finance Health Coach
+
+        </p>
+
+
+    </footer>
+
+
+</body>
+
+</html>
